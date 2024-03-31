@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NguoiDungControllers;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/admin', function () {
+    return view('Admin/home');
+});
+
+Route::resource("/users", NguoiDungControllers::class);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Nguoidung;
 
 class NguoiDungControllers extends Controller
 {
@@ -14,6 +15,8 @@ class NguoiDungControllers extends Controller
     public function index()
     {
         //
+        $users = Nguoidung::all();
+        return view("admin.users.index")->with("users", $users);
     }
 
     /**
@@ -24,6 +27,7 @@ class NguoiDungControllers extends Controller
     public function create()
     {
         //
+        return view("admin.users.create");
     }
 
     /**
@@ -34,8 +38,17 @@ class NguoiDungControllers extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $input = $request->all();
+      
+        $input['VaiTro'] = 2;
+        $input['TrangThai'] = 1;
+
+        Nguoidung::create($input);
+
+        return redirect("users")->with("success", "Thêm người dùng thành công!");
     }
+
 
     /**
      * Display the specified resource.
@@ -46,6 +59,8 @@ class NguoiDungControllers extends Controller
     public function show($id)
     {
         //
+        $users = Nguoidung::find($id);
+        return view("admin.users.show")->with("users", $users);
     }
 
     /**
@@ -57,6 +72,8 @@ class NguoiDungControllers extends Controller
     public function edit($id)
     {
         //
+        $users = Nguoidung::find($id);
+        return view("admin.users.edit")->with("users", $users);
     }
 
     /**
@@ -69,6 +86,10 @@ class NguoiDungControllers extends Controller
     public function update(Request $request, $id)
     {
         //
+        $users = Nguoidung::find($id);
+        $input = $request->all();
+        $users->update($input);
+        return redirect("users")->with("success","Cập nhật thành công");
     }
 
     /**
@@ -80,5 +101,7 @@ class NguoiDungControllers extends Controller
     public function destroy($id)
     {
         //
+        Nguoidung::find($id)->delete();
+        return redirect("users")->with("success","Xóa thành công !");
     }
 }
