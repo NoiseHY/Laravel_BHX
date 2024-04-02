@@ -18,10 +18,10 @@
       <label for="exampleInputPassword">Họ và tên</label>
       <input type="text" class="form-control" id="HoTen" name="HoTen" placeholder="Họ và tên">
     </div>
-    <!-- type="email" -->
+    
     <div class="form-group">
       <label for="exampleTextarea">Email</label>
-      <textarea class="form-control" id="Email" name="Email" rows="3" placeholder="Email"></textarea>
+      <input class="form-control" type="email" id="Email" name="Email" rows="3" placeholder="Email"></input>
     </div>
     <br>
     <button type="submit" value="Save" class="btn btn-primary">Submit</button>

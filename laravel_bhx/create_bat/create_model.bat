@@ -1,7 +1,7 @@
-
-php artisan make:model LoaiSanPham
-php artisan make:model SanPham
-php artisan make:model KhachHang 
-php artisan make:model NguoiDung 
-php artisan make:model HoaDon 
-php artisan make:model ChiTietHoaDon 
+php artisan make:model ChiTietSanPham 
+@REM php artisan make:model LoaiSanPham
+@REM php artisan make:model SanPham
+@REM php artisan make:model KhachHang 
+@REM php artisan make:model NguoiDung 
+@REM php artisan make:model HoaDon 
+@REM php artisan make:model ChiTietHoaDon 

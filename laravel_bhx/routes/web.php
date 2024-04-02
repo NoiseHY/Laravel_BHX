@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\NguoiDungControllers;
+use App\Http\Controllers\SanPhamControllers;
+use App\Http\Controllers\TrangChuControllers;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,4 +25,10 @@ Route::get('/admin', function () {
     return view('Admin/home');
 });
 
+// Route::get('/home', function () {
+//     return view('/users/home/layout');
+// });
+
 Route::resource("/users", NguoiDungControllers::class);
+Route::resource("/products", SanPhamControllers::class);
+Route::resource("/home", TrangChuControllers::class);

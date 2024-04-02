@@ -1,6 +1,6 @@
 @extends('admin.users.layout')
 @section('content')
-<h1>Chi tiết sản phẩm</h1>
+<h1>Danh sách người dùng</h1>
 <div class="card-body">
   <div class="table-responsive">
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
