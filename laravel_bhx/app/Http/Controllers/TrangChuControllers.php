@@ -17,7 +17,7 @@ class TrangChuControllers extends Controller
     {
         //
         $products = SanPham::all();
-        return view("users.home.index")->with("products", $products);
+        return view("users.index")->with("products", $products);
     }
 
     /**

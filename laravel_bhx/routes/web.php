@@ -4,6 +4,9 @@ use App\Http\Controllers\NguoiDungControllers;
 use App\Http\Controllers\SanPhamControllers;
 use App\Http\Controllers\TrangChuControllers;
 
+
+use App\Http\Controllers\ChiTietSanPhamControllers_Users;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,3 +35,5 @@ Route::get('/admin', function () {
 Route::resource("/users", NguoiDungControllers::class);
 Route::resource("/products", SanPhamControllers::class);
 Route::resource("/home", TrangChuControllers::class);
+
+Route::resource("/details", ChiTietSanPhamControllers_Users::class);
