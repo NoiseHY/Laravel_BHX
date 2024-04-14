@@ -13,4 +13,6 @@ class Giohang extends Model
 
   protected $table = 'GioHang';
   protected $primaryKey = 'MaNguoiDung';
+
+  
 }

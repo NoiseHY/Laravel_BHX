@@ -65,7 +65,7 @@
                         <a href="shop.html" class="nav-item nav-link active">Trang chủ</a>
                         <a href="shop-detail.html" class="nav-item nav-link">Danh mục</a>
                         <a href="shop-detail.html" class="nav-item nav-link">Giúp đỡ</a>
-                        
+
                     </div>
 
                     <div class="d-flex align-items-center">
@@ -73,7 +73,7 @@
                             <i class="fas fa-search text-primary"></i>
                         </button>
                         <a href="{{url('/cart/' .session('user_id'))}}" class="position-relative me-4 my-auto">
-                            <i class="fas fa-shopping-bag fa-lg"></i> <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
+                            <i class="fas fa-shopping-bag fa-lg"></i> <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">{{$number}}</span>
                         </a>
                         <div class="dropdown">
                             <button class="btn btn-light dropdown-toggle me-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -121,7 +121,7 @@
     <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5">
         <h1 class="text-center text-white display-6">Trang chủ</h1>
-        
+
     </div>
     <!-- Single Page Header End -->
 
@@ -139,7 +139,13 @@
                                 <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
                             </div>
                         </div>
-                        <div class="col-6"></div>
+                        <div class="col-6">
+                            @if (\Session::has('message'))
+                            <div class="alert alert-success">
+                                {{ \Session::get('message') }}
+                            </div>
+                            @endif
+                        </div>
                         <div class="col-xl-3">
                             <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
                                 <label for="fruits">Default Sorting:</label>
@@ -297,12 +303,17 @@
                                 </div>
                             </div>
                         </div>
+
+
                         <div class="col-lg-9">
+
                             <div class="row g-4 justify-content-center">
                                 <!-- San pham -->
                                 @yield('content')
                                 <!-- end -->
+
                             </div>
+
                         </div>
                     </div>
                 </div>

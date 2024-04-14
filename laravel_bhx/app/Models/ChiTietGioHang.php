@@ -13,4 +13,10 @@ class ChiTietGioHang extends Model
 
   protected $table = 'ChiTietGioHang';
   protected $primaryKey = 'MaGioHang';
+
+  protected $fillable = [
+    'MaGioHang',
+    'MaSanPham',
+    'SoLuong',
+  ];
 }

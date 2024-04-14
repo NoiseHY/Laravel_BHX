@@ -4,6 +4,7 @@
 
 <div class="row">
   @foreach($products as $product)
+
   <div class="col-md-6 col-lg-6 col-xl-4 mb-4">
     <a href="{{ url('/details/' . $product->MaSP) }}" class="text-decoration-none text-dark">
       <div class="rounded position-relative fruite-item">
@@ -16,17 +17,19 @@
           <p>{{ Str::limit($product->MoTa, 100) }}</p>
           <div class="d-flex justify-content-between flex-lg-wrap">
             <p class="text-dark fs-5 fw-bold mb-0">{{ $product->DonGia }} đ</p>
-            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+            <form method="POST" action="{{ url('/cart/' . session('user_id') . '/' . $product->MaSP) }}">
+              @csrf
+              <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Thêm vào giỏ</button>
+            </form>
           </div>
         </div>
+
       </div>
     </a>
   </div>
+
   @endforeach
 </div>
-
-
-
 
 
 

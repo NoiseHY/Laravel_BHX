@@ -50,6 +50,9 @@ Route::resource("/products", SanPhamControllers::class);
 Route::resource("/home", TrangChuControllers::class);
 Route::resource("/login", LoginControllers::class);
 Route::resource("/profile", TrangCaNhanControllers::class);
+
 Route::resource("/cart", GioHangControllers::class);
+Route::post('/cart/{user_id}/{product_id}', [GioHangControllers::class, 'store'])->name('cart.add');
+
 
 Route::resource("/details", ChiTietSanPhamControllers_Users::class);

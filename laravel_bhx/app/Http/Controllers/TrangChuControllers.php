@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\SanPham;
+use App\Models\Giohang;
+use App\Models\ChiTietGioHang;
 
 class TrangChuControllers extends Controller
 {
@@ -16,9 +18,16 @@ class TrangChuControllers extends Controller
     public function index()
     {
         //
+        $number = ChiTietGioHang::count();
+
         $products = SanPham::all();
-        return view("users.index")->with("products", $products);
+
+        return view("users.index", [
+            'products' => $products,
+            'number' => $number,
+        ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
