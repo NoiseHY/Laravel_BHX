@@ -16,16 +16,15 @@ class GioHangControllers extends Controller
    * @return \Illuminate\Http\Response
    */
 
-  public function show($id, Request $request)
+  public function show($id)
   {
     $cart = Giohang::find($id);
 
-    
-    $query = ChiTietGioHang::where('MaGioHang', $id);
+    $cartId = $cart->MaGioHang;
 
-    
-    $cartItems = $query->get();
+    $cartItems = ChiTietGioHang::where('MaGioHang', $cartId)->get();
 
-    return view('users.cart.index')->with('cart', $cart)->with('cartItems', $cartItems);
+    return view('users.cart.index')->with('cartItems', $cartItems);
   }
+  
 }

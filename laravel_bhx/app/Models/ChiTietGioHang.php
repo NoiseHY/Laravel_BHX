@@ -11,6 +11,6 @@ class ChiTietGioHang extends Model
 
   public $timestamps = false;
 
-  protected $table = 'GioHang';
+  protected $table = 'ChiTietGioHang';
   protected $primaryKey = 'MaGioHang';
 }

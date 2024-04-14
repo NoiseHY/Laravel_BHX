@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Fruitables - Vegetable Website Template</title>
+    <title>Bách hóa xanh - Giỏ hàng</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -19,7 +19,7 @@
 
     <!-- Libraries Stylesheet -->
     <link href="/users_tmp/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-    <link href="/users_tmp/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
 
     <!-- Customized Bootstrap Stylesheet -->
@@ -90,7 +90,7 @@
                                 <i class="fas fa-user fa-lg"></i>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                                <li><a href="{{ url('/profile/' . session('user_name')) }}" class="dropdown-item">Trang cá nhân</a></li>
+                                <li><a href="{{ url('/profile/' . session('user_id')) }}" class="dropdown-item">Trang cá nhân</a></li>
                                 <li><a href="#" class="dropdown-item">Cài đặt</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
