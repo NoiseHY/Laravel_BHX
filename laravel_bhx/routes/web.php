@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\GioHangControllers;
 use App\Http\Controllers\NguoiDungControllers;
 use App\Http\Controllers\SanPhamControllers;
 use App\Http\Controllers\TrangChuControllers;
+use App\Http\Controllers\LoginControllers;
+use App\Http\Controllers\TrangCaNhanControllers;
 
 
 use App\Http\Controllers\ChiTietSanPhamControllers_Users;
@@ -32,8 +35,21 @@ Route::get('/admin', function () {
 //     return view('/users/home/layout');
 // });
 
+// Route::get('/login', function(){
+//     return view('login.login');
+// });
+
+// Route::get('/cart', function(){
+//     return view('users.cart.index');
+// });
+
+
+
 Route::resource("/users", NguoiDungControllers::class);
 Route::resource("/products", SanPhamControllers::class);
 Route::resource("/home", TrangChuControllers::class);
+Route::resource("/login", LoginControllers::class);
+Route::resource("/profile", TrangCaNhanControllers::class);
+Route::resource("/cart", GioHangControllers::class);
 
 Route::resource("/details", ChiTietSanPhamControllers_Users::class);

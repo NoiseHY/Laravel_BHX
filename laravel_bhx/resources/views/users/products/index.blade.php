@@ -55,9 +55,6 @@
             </nav>
             <div class="tab-content mb-5">
               <div class="tab-pane active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-                <p>Màu sắc : {{$details->MauSac}} </p>
-                <p>Kích thước : {{$details->KichThuoc}} </p>
-                <p>Xuất xứ : {{$details->XuatXu}} </p>
                 <p>Thông tin khác : {{$details->ThongTinKhac}} </p>
                 <!-- <p>Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish filefish Antarctic
                   icefish goldeye aholehole trumpetfish pilot fish airbreathing catfish, electric ray sweeper.</p> -->
@@ -66,47 +63,33 @@
                     <div class="col-6">
                       <div class="row bg-light align-items-center text-center justify-content-center py-2">
                         <div class="col-6">
-                          <p class="mb-0">Weight</p>
+                          <p class="mb-0">Màu sắc</p>
                         </div>
                         <div class="col-6">
-                          <p class="mb-0">1 kg</p>
-                        </div>
-                      </div>
-                      <div class="row text-center align-items-center justify-content-center py-2">
-                        <div class="col-6">
-                          <p class="mb-0">Country of Origin</p>
-                        </div>
-                        <div class="col-6">
-                          <p class="mb-0">Agro Farm</p>
-                        </div>
-                      </div>
-                      <div class="row bg-light text-center align-items-center justify-content-center py-2">
-                        <div class="col-6">
-                          <p class="mb-0">Quality</p>
-                        </div>
-                        <div class="col-6">
-                          <p class="mb-0">Organic</p>
+                          <p class="mb-0">{{$details->MauSac}}</p>
                         </div>
                       </div>
                       <div class="row text-center align-items-center justify-content-center py-2">
                         <div class="col-6">
-                          <p class="mb-0">Сheck</p>
+                          <p class="mb-0">Kích thước</p>
                         </div>
                         <div class="col-6">
-                          <p class="mb-0">Healthy</p>
+                          <p class="mb-0">{{$details->KichThuoc}}</p>
                         </div>
                       </div>
-                      <div class="row bg-light text-center align-items-center justify-content-center py-2">
+                      
+                      <div class="row text-center align-items-center justify-content-center py-2">
                         <div class="col-6">
-                          <p class="mb-0">Min Weight</p>
+                          <p class="mb-0">Xuất xứ</p>
                         </div>
                         <div class="col-6">
-                          <p class="mb-0">250 Kg</p>
+                          <p class="mb-0">{{$details->XuatXu}}</p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <!-- end -->
               </div>
               <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
                 <div class="d-flex">
