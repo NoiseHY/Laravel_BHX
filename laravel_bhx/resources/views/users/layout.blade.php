@@ -62,19 +62,10 @@
                 </button>
                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                     <div class="navbar-nav mx-auto">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="shop.html" class="nav-item nav-link active">Shop</a>
-                        <a href="shop-detail.html" class="nav-item nav-link">Shop Detail</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                                <a href="cart.html" class="dropdown-item">Cart</a>
-                                <a href="chackout.html" class="dropdown-item">Chackout</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="shop.html" class="nav-item nav-link active">Trang chủ</a>
+                        <a href="shop-detail.html" class="nav-item nav-link">Danh mục</a>
+                        <a href="shop-detail.html" class="nav-item nav-link">Giúp đỡ</a>
+                        
                     </div>
 
                     <div class="d-flex align-items-center">
@@ -129,12 +120,8 @@
 
     <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5">
-        <h1 class="text-center text-white display-6">Shop</h1>
-        <ol class="breadcrumb justify-content-center mb-0">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-            <li class="breadcrumb-item active text-white">Shop</li>
-        </ol>
+        <h1 class="text-center text-white display-6">Trang chủ</h1>
+        
     </div>
     <!-- Single Page Header End -->
 

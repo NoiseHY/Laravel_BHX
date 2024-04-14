@@ -63,27 +63,63 @@
                     <div class="col-6">
                       <div class="row bg-light align-items-center text-center justify-content-center py-2">
                         <div class="col-6">
-                          <p class="mb-0">Màu sắc</p>
+                          <p class="mb-0">Thương hiệu </p>
                         </div>
                         <div class="col-6">
-                          <p class="mb-0">{{$details->MauSac}}</p>
+                          <p class="mb-0">{{$details->ThuongHieu}}</p>
                         </div>
                       </div>
                       <div class="row text-center align-items-center justify-content-center py-2">
                         <div class="col-6">
-                          <p class="mb-0">Kích thước</p>
+                          <p class="mb-0">Khối lượng</p>
                         </div>
                         <div class="col-6">
-                          <p class="mb-0">{{$details->KichThuoc}}</p>
+                          <p class="mb-0">{{$details->KhoiLuong}}</p>
                         </div>
                       </div>
                       
                       <div class="row text-center align-items-center justify-content-center py-2">
                         <div class="col-6">
-                          <p class="mb-0">Xuất xứ</p>
+                          <p class="mb-0">Thành phần</p>
                         </div>
                         <div class="col-6">
-                          <p class="mb-0">{{$details->XuatXu}}</p>
+                          <p class="mb-0">{{$details->ThanhPhan}}</p>
+                        </div>
+                      </div>
+
+                      <div class="row text-center align-items-center justify-content-center py-2">
+                        <div class="col-6">
+                          <p class="mb-0">Hướng dẫn sử dụng </p>
+                        </div>
+                        <div class="col-6">
+                          <p class="mb-0">{{$details->HuongDanSuDung}}</p>
+                        </div>
+                      </div>
+
+                      <div class="row text-center align-items-center justify-content-center py-2">
+                        <div class="col-6">
+                          <p class="mb-0">Hạn sử dụng </p>
+                        </div>
+                        <div class="col-6">
+                          <p class="mb-0">{{$details->HanSuDung}}</p>
+                        </div>
+                      </div>
+
+                      <div class="row text-center align-items-center justify-content-center py-2">
+                        <div class="col-6">
+                          <p class="mb-0">Bảo quản </p>
+                        </div>
+                        <div class="col-6">
+                          <p class="mb-0">{{$details->BaoQuan}}</p>
+                        </div>
+                      </div>
+
+                      <div class="row text-center align-items-center justify-content-center py-2">
+                        <div class="col-6">
+                          <p class="mb-0">Sản xuất tại </p>
+                        </div>
+                        <div class="col-6">
+                          <p class="mb-0">{{$details->SanXuatTai}}</p>
                         </div>
                       </div>
                     </div>
@@ -137,41 +173,7 @@
               </div>
             </div>
           </div>
-          <form action="#">
-            <h4 class="mb-5 fw-bold">Leave a Reply</h4>
-            <div class="row g-4">
-              <div class="col-lg-6">
-                <div class="border-bottom rounded">
-                  <input type="text" class="form-control border-0 me-4" placeholder="Yur Name *">
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="border-bottom rounded">
-                  <input type="email" class="form-control border-0" placeholder="Your Email *">
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <div class="border-bottom rounded my-4">
-                  <textarea name="" id="" class="form-control border-0" cols="30" rows="8" placeholder="Your Review *" spellcheck="false"></textarea>
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <div class="d-flex justify-content-between py-3 mb-5">
-                  <div class="d-flex align-items-center">
-                    <p class="mb-0 me-3">Please rate:</p>
-                    <div class="d-flex align-items-center" style="font-size: 12px;">
-                      <i class="fa fa-star text-muted"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    </div>
-                  </div>
-                  <a href="#" class="btn border border-secondary text-primary rounded-pill px-4 py-3"> Post Comment</a>
-                </div>
-              </div>
-            </div>
-          </form>
+          
         </div>
       </div>
       <div class="col-lg-4 col-xl-3">
@@ -217,6 +219,7 @@
               </ul>
             </div>
           </div>
+          
           <div class="col-lg-12">
             <h4 class="mb-4">Featured products</h4>
             <div class="d-flex align-items-center justify-content-start">
@@ -337,14 +340,16 @@
               <a href="#" class="btn border border-secondary px-4 py-3 rounded-pill text-primary w-100">Vew More</a>
             </div>
           </div>
-          <div class="col-lg-12">
+
+          <!-- <div class="col-lg-12">
             <div class="position-relative">
               <img src="/users_tmp/img/banner-fruits.jpg" class="img-fluid w-100 rounded" alt="">
               <div class="position-absolute" style="top: 50%; right: 10px; transform: translateY(-50%);">
                 <h3 class="text-secondary fw-bold">Fresh <br> Fruits <br> Banner</h3>
               </div>
             </div>
-          </div>
+          </div> -->
+
         </div>
       </div>
     </div>
