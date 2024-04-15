@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\LoaiSanPham;
+use App\Models\ChiTietGioHang;
+use App\Models\SanPham;
+
 class LoaiSanPhamControllers extends Controller
 {
     /**
@@ -14,6 +18,21 @@ class LoaiSanPhamControllers extends Controller
     public function index()
     {
         //
+        $number = ChiTietGioHang::count();
+
+        $category = LoaiSanPham::all();
+
+        $category_id = 1;
+
+        $category_name = LoaiSanPham::find($category_id);
+
+        $products = SanPham::where('MaLoai', $category_id)->get();
+
+        return view('users.category.index', [
+            'number' => $number, 'category' => $category,
+            'products' => $products,
+            'category_name' => $category_name
+        ]);
     }
 
     /**
@@ -45,7 +64,19 @@ class LoaiSanPhamControllers extends Controller
      */
     public function show($id)
     {
-        //
+        $number = ChiTietGioHang::count();
+
+        $category_name = LoaiSanPham::find($id);
+
+        $category = LoaiSanPham::all();
+
+        $products = SanPham::where('MaLoai', $id)->get();
+
+        return view('users.category.index', [
+            'products' => $products, 'category_name' => $category_name,
+            'number' => $number,
+            'category' => $category
+        ]);
     }
 
     /**

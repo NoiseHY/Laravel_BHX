@@ -6,10 +6,10 @@ use App\Http\Controllers\SanPhamControllers;
 use App\Http\Controllers\TrangChuControllers;
 use App\Http\Controllers\LoginControllers;
 use App\Http\Controllers\TrangCaNhanControllers;
-
+use App\Http\Controllers\LoaiSanPhamControllers;
 
 use App\Http\Controllers\ChiTietSanPhamControllers_Users;
-
+use App\Models\LoaiSanPham;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,8 +48,12 @@ Route::get('/admin', function () {
 Route::resource("/users", NguoiDungControllers::class);
 Route::resource("/products", SanPhamControllers::class);
 Route::resource("/home", TrangChuControllers::class);
+
 Route::resource("/login", LoginControllers::class);
+Route::post('/logout', [LoginControllers::class, 'logout'])->name('logout');
+
 Route::resource("/profile", TrangCaNhanControllers::class);
+Route::resource('/category', LoaiSanPhamControllers::class);
 
 Route::resource("/cart", GioHangControllers::class);
 Route::post('/cart/{user_id}/{product_id}', [GioHangControllers::class, 'store'])->name('cart.add');

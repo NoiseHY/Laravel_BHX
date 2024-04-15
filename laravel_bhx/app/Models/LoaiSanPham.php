@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class LoaiSanPham extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'MaLoai';
+
+    protected $table = 'LoaiSanPham';
 }

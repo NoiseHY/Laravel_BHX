@@ -47,10 +47,13 @@ class LoginControllers extends Controller
       // $request->session()->put('user_name', $user->TenDangNhap);
       $request->session()->put('user_id', $user->MaNguoiDung);
 
-      
+
       // dd($request->session()->all());
-      
-      return redirect()->intended('/home')->with('message', 'Đăng nhập thành công!');
+      if ($user->VaiTro == 1) {
+        return redirect()->intended('/admin')->with('message', 'Đăng nhập thành công!');
+      } else {
+        return redirect()->intended('/home');
+      }
     }
 
     return redirect('/login')->with('message', 'Thông tin đăng nhập không chính xác.');
@@ -67,7 +70,7 @@ class LoginControllers extends Controller
    */
   public function logout(Request $request)
   {
-    Auth::logout();
+    // Auth::logout();
     $request->session()->invalidate();
     $request->session()->regenerateToken();
     return redirect('/login');
