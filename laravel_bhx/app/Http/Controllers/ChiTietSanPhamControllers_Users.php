@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\ChiTietSanPham;
 use App\Models\SanPham;
+use App\Models\ChiTietGioHang;
 
 class ChiTietSanPhamControllers_Users extends Controller
 {
@@ -26,8 +27,13 @@ class ChiTietSanPhamControllers_Users extends Controller
   {
     $products = SanPham::find($id);
     $details = ChiTietSanPham::find($id);
-    
 
-    return view("users.products.index")->with("details", $details)->with("products", $products);
+    $number = ChiTietGioHang::count();
+
+    return view("users.products.index")->with([
+      "details" => $details,
+      "products" => $products,
+      "number" => $number
+    ]);
   }
 }

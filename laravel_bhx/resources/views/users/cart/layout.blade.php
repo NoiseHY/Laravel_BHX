@@ -19,7 +19,7 @@
 
     <!-- Libraries Stylesheet -->
     <link href="/users_tmp/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-    <link href="owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/users_tmp/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
 
     <!-- Customized Bootstrap Stylesheet -->
@@ -55,8 +55,8 @@
         </div>
         <div class="container px-0">
             <nav class="navbar navbar-light bg-white navbar-expand-xl">
-                <a href="index.html" class="navbar-brand">
-                    <h1 class="text-primary display-6">Fruitables</h1>
+                <a href="{{url('/home')}}" class="navbar-brand">
+                    <h1 class="text-primary display-6">Bách hóa xanh</h1>
                 </a>
                 <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars text-primary"></span>
@@ -69,7 +69,7 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                                <a href="cart.html" class="dropdown-item active">Cart</a>
+                                <a href="cart.html" class="dropdown-item active">Giỏ hàng </a>
                                 <a href="chackout.html" class="dropdown-item">Chackout</a>
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                                 <a href="404.html" class="dropdown-item">404 Page</a>
@@ -130,11 +130,10 @@
 
     <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5">
-        <h1 class="text-center text-white display-6">Cart</h1>
+        <h1 class="text-center text-white display-6">Giỏ hàng</h1>
         <ol class="breadcrumb justify-content-center mb-0">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-            <li class="breadcrumb-item active text-white">Cart</li>
+            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+            <li class="breadcrumb-item active text-white">Giỏ hàng</li>
         </ol>
     </div>
     <!-- Single Page Header End -->
@@ -252,6 +251,8 @@
 
     <!-- Template Javascript -->
     <script src="/users_tmp/js/main.js"></script>
+
+    <!-- <script src="/users_tmp/js/cart_js.js"></script> -->
 </body>
 
 </html>

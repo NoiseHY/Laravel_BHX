@@ -54,12 +54,13 @@
 
         <div class="container px-0">
             <nav class="navbar navbar-light bg-white navbar-expand-xl">
-                <a href="index.html" class="navbar-brand">
+                <a href="{{url('/home')}}" class="navbar-brand">
                     <h1 class="text-primary display-6">Bách hóa xanh</h1>
                 </a>
                 <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars text-primary"></span>
                 </button>
+                
                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                     <div class="navbar-nav mx-auto">
                         <a href="shop.html" class="nav-item nav-link active">Trang chủ</a>
@@ -73,8 +74,9 @@
                             <i class="fas fa-search text-primary"></i>
                         </button>
                         <a href="{{url('/cart/' .session('user_id'))}}" class="position-relative me-4 my-auto">
-                            <i class="fas fa-shopping-bag fa-lg"></i> <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">{{$number}}</span>
+                            <i class="fas fa-shopping-bag fa-lg"></i> <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">{{$number -1}}</span>
                         </a>
+                        
                         <div class="dropdown">
                             <button class="btn btn-light dropdown-toggle me-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-user fa-lg"></i>
