@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SanPham;
+use App\Models\ChiTietSanPham;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -18,6 +19,7 @@ class SanPhamControllers extends Controller
     {
         //
         $products = SanPham::all();
+        
         return view("admin.products.index")->with("products", $products);
     }
 
@@ -40,33 +42,35 @@ class SanPhamControllers extends Controller
      */
     public function store(Request $request)
     {
-        // Validate request
         $request->validate([
             'HinhAnh' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Tạo thư mục uploads nếu chưa tồn tại
         $uploadsFolder = public_path('uploads');
         if (!file_exists($uploadsFolder)) {
             mkdir($uploadsFolder);
         }
 
-        // Tạo thư mục uploads/TenSP nếu chưa tồn tại
         $tenSPFolder = public_path('uploads/' . $request->TenSP);
         if (!file_exists($tenSPFolder)) {
             mkdir($tenSPFolder);
         }
 
-        // Lưu hình ảnh vào thư mục uploads/TenSP nếu tồn tại trường HinhAnh trong request
         if ($request->hasFile('HinhAnh')) {
             $imageName = time() . '.' . $request->HinhAnh->getClientOriginalExtension(); // Lấy phần mở rộng của tệp gốc
             $request->HinhAnh->move($tenSPFolder, $imageName);
         }
 
-        // Lưu tên tệp hình ảnh (bao gồm phần mở rộng) vào cơ sở dữ liệu
+        
         $input = $request->all();
-        $input['HinhAnh'] = $imageName; // Lưu tên tệp đầy đủ
-        SanPham::create($input);
+        $input['HinhAnh'] = $imageName; 
+        $products = SanPham::create($input);
+
+        $chiTietSanPham = new ChiTietSanPham();
+
+        $chiTietSanPham->MaSP = $products->MaSP;
+
+        $chiTietSanPham->save();
 
         return redirect('products')->with('success', 'Thêm thành công');
     }
@@ -86,7 +90,8 @@ class SanPhamControllers extends Controller
     {
         //
         $products = SanPham::find($id);
-        return view("admin.products.show")->with("products", $products);
+        $products_info = ChiTietSanPham::find($id);
+        return view("admin.products.show", ['products' => $products, 'products_info' => $products_info]);
     }
 
     /**
@@ -119,24 +124,24 @@ class SanPhamControllers extends Controller
              'DonGia' => 'required|numeric',
              'SoLuong' => 'required|integer',
              'MoTa' => 'required|string',
-             'HinhAnh' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file size limit as needed
+            //  'HinhAnh' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file size limit as needed
          ]);
  
          $product->update($validatedData);
  
-         // Handle image upload if provided
-         if ($request->hasFile('HinhAnh')) {
-             $fileName = time() . '.' . $request->HinhAnh->getClientOriginalExtension();
-             $product->HinhAnh = $fileName; // Update product image attribute
+        //  // Handle image upload if provided
+        //  if ($request->hasFile('HinhAnh')) {
+        //      $fileName = time() . '.' . $request->HinhAnh->getClientOriginalExtension();
+        //      $product->HinhAnh = $fileName; // Update product image attribute
  
-             // Store the uploaded image in the 'uploads' disk (replace with your storage configuration)
-             $request->HinhAnh->storeAs('uploads/' . $product->TenSP, $fileName, 'public');
+        //      // Store the uploaded image in the 'uploads' disk (replace with your storage configuration)
+        //      $request->HinhAnh->storeAs('uploads/' . $product->TenSP, $fileName, 'public');
  
-             // Optionally delete the old image if it exists and a new one was uploaded
-             if ($product->wasOriginallyChanged('HinhAnh')) {
-                 Storage::disk('public')->delete('uploads/' . $product->getOriginal('TenSP') . '/' . $product->getOriginal('HinhAnh'));
-             }
-         }
+        //      // Optionally delete the old image if it exists and a new one was uploaded
+        //      if ($product->wasOriginallyChanged('HinhAnh')) {
+        //          Storage::disk('public')->delete('uploads/' . $product->getOriginal('TenSP') . '/' . $product->getOriginal('HinhAnh'));
+        //      }
+        //  }
  
          $product->save();
  

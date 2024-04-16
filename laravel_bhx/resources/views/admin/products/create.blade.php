@@ -13,7 +13,7 @@
 
     <div class="form-group">
       <label for="exampleInputEmail">Đơn giá</label>
-      <input type="text" class="form-control" id="DonGia" name="DonGia" placeholder="Đơn giá">
+      <input type="number" class="form-control" id="DonGia" name="DonGia" placeholder="Đơn giá">
     </div>
 
     <div class="form-group">

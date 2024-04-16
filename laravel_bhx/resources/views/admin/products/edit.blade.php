@@ -13,7 +13,7 @@
 
     <div class="form-group">
       <label for="exampleInputEmail">Đơn giá</label>
-      <input type="password" class="form-control" id="DonGia" name="DonGia" value="{{$products->DonGia}}">
+      <input type="number" class="form-control" id="DonGia" name="DonGia" value="{{$products->DonGia}}">
     </div>
     <div class="form-group">
       <label for="exampleInputPassword">Số lượng</label>
@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="exampleInputImage">Hình ảnh</label>
       <div class="input-group">
         <div class="custom-file">
@@ -44,7 +44,7 @@
         </div>
       </div>
       <small id="imageHelp" class="form-text text-muted">Chọn một hình ảnh từ thiết bị của bạn.</small>
-    </div>
+    </div> -->
     <br>
     
     <button type="submit" value="Save" class="btn btn-primary">Sửa</button>

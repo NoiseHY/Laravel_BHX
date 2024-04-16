@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChiTietSanPhamControllers;
 use App\Http\Controllers\GioHangControllers;
 use App\Http\Controllers\NguoiDungControllers;
 use App\Http\Controllers\SanPhamControllers;
@@ -58,5 +59,6 @@ Route::resource('/category', LoaiSanPhamControllers::class);
 Route::resource("/cart", GioHangControllers::class);
 Route::post('/cart/{user_id}/{product_id}', [GioHangControllers::class, 'store'])->name('cart.add');
 
-
 Route::resource("/details", ChiTietSanPhamControllers_Users::class);
+
+Route::resource('/info', ChiTietSanPhamControllers::class);
