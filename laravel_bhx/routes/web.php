@@ -62,3 +62,4 @@ Route::post('/cart/{user_id}/{product_id}', [GioHangControllers::class, 'store']
 Route::resource("/details", ChiTietSanPhamControllers_Users::class);
 
 Route::resource('/info', ChiTietSanPhamControllers::class);
+

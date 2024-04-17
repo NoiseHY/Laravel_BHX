@@ -32,9 +32,9 @@
 
 
     <ul class="list-group">
-      
+
       <li class="list-group-item">Thương hiệu : {{$products_info->ThuongHieu}}</li>
-      <li class="list-group-item">Đơn giá : {{$products_info->KhoiLuong}}</li>
+      <li class="list-group-item">Khối lượng : {{$products_info->KhoiLuong}}</li>
       <li class="list-group-item">Thành phẩn : {{$products_info->ThanhPhan}}</li>
       <li class="list-group-item">Hướng dẫn sử dùng : {{$products_info->HuongDanSuDung}}</li>
       <li class="list-group-item">Hạn sử dụng : {{$products_info->HanSuDung}}</li>
@@ -47,11 +47,19 @@
             <span class="font-weight-bold">Hình ảnh:</span>
           </div>
           <div class="col-10">
-            <img src="{{ asset('uploads/' . $products->TenSP . '/' . $products_info->HinhAnh) }}" class="img-thumbnail" alt="Hình ảnh sản phẩm" style="max-width: 200px; max-height: 200px;">
+            @if(isset($products_info) && $products_info->HinhAnh)
+            @foreach (json_decode($products_info->HinhAnh) as $image)
+            <img src="{{ asset('uploads/' . $products->TenSP . '/' . $image) }}" class="img-thumbnail" alt="Hình ảnh sản phẩm" style="max-width: 200px; max-height: 200px;">
+            @endforeach
+            @else
+            <!-- Hiển thị một thông báo hoặc hình ảnh mặc định nếu không có hình ảnh -->
+            <p>Không có hình ảnh</p>
+            @endif
+
           </div>
         </div>
       </li>
-
+      </br>
 
     </ul>
   </form>

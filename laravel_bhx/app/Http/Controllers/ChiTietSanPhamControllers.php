@@ -74,40 +74,20 @@ class ChiTietSanPhamControllers extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $info = ChiTietSanPham::findOrFail($id);
 
-        $product = SanPham::findOrFail($info->MaSanPham);
+        $products = SanPham::find($id);
 
-        $validatedData = $request->validate([
-            'TenSP' => 'required|string|max:255',
-            'DonGia' => 'required|numeric',
-            'SoLuong' => 'required|integer',
-            'MoTa' => 'required|string',
-            'HinhAnh' => ($request->hasFile('HinhAnh') ? 'image|mimes:jpeg,png,jpg,gif|max:2048' : 'nullable')
+        $info->update($request->all());
+
+
+        return redirect("info/" . $info->MaSP)->with([
+            "message" => "Cập nhật thành công",
+            "products" => $products
         ]);
-
-        // Cập nhật thông tin sản phẩm
-        $info->fill($validatedData)->save();
-
-        if ($request->hasFile('HinhAnh')) {
-            $uploadedImages = [];
-            foreach ($request->file('HinhAnh') as $image) {
-
-                $imageName = time() . '_' . $image->getClientOriginalName();
-
-                $image->move(public_path('uploads'), $imageName);
-
-                $uploadedImages[] = $imageName;
-            }
-            
-            $info->HinhAnh()->createMany([
-                ['link' => $uploadedImages[0]], 
-                ['link' => $uploadedImages[1]], 
-            ]);
-        }
-
-        return redirect()->route('products.index')->with('success', 'Sửa thành công !');
     }
+
 
 
     /**

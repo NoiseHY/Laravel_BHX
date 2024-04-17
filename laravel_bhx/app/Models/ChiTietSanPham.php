@@ -12,13 +12,18 @@ class ChiTietSanPham extends Model
     public $timestamps = false;
 
     protected $primaryKey = "MaSP";
-    
+
     protected $table = "ChiTietSanPham";
-    protected $fillable = ['MaChiTietSP',
-    'MaSP' ,
-    'MauSac',
-    'KichThuoc',
-    'XuatXu' ,
-    'ThongTinKhac'];
-      
+    protected $fillable = [
+        'MaSP' ,
+        'ThuongHieu' ,
+        'KhoiLuong' ,
+        'ThanhPhan' ,
+        'HuongDanSuDung' ,
+        'HanSuDung' ,
+        'BaoQuan' ,
+        'SanXuatTai',
+        'HinhAnh'
+    ];
+        
 }

@@ -2,10 +2,15 @@
 
 @section('content')
 
-<br class="container">
 <h2>Cập nhật Chi tiết sản phẩm {{$products->TenSP}} </h2>
-<form action="{{url('info/' .$info->MaChiTietSP)}}" method="post">
 
+@if (\Session::has('message'))
+<div class="alert alert-success">
+  {{ \Session::get('message') }}
+</div>
+@endif
+
+<form action="{{url('info/' .$info->MaSP)}}" method="post">
   {!! csrf_field() !!}
   @method("PATCH")
   <div class="form-group">
@@ -45,13 +50,22 @@
     <label for="exampleInputPassword">Hướng dẫn sử dụng</label>
     <textarea class="form-control" id="MoTa" style="height: 150px;" name="HuongDanSuDung">{{$info->HuongDanSuDung}}</textarea>
   </div>
-
+  </br>
   <div class="row">
     <div class="col-2">
       <span class="font-weight-bold">Hình ảnh:</span>
     </div>
     <div class="col-10">
-      <img src="{{ asset('uploads/' . $products->TenSP . '/' . $info->HinhAnh) }}" class="img-thumbnail" alt="Hình ảnh sản phẩm" style="max-width: 200px; max-height: 200px;">
+      @if(isset($info) && $info->HinhAnh)
+      @foreach (json_decode($info->HinhAnh) as $image)
+      <img src="{{ asset('uploads/' . $products->TenSP . '/' . $image) }}" class="img-thumbnail" alt="Hình ảnh sản phẩm" style="max-width: 200px; max-height: 200px;">
+      @endforeach
+      @else
+      <!-- Hiển thị một thông báo hoặc hình ảnh mặc định nếu không có hình ảnh -->
+      <p>Không có hình ảnh</p>
+      @endif
+
+
     </div>
   </div>
 
@@ -65,8 +79,6 @@
     </div>
     <small id="imageHelp" class="form-text text-muted">Chọn một hoặc nhiều hình ảnh từ thiết bị của bạn.</small>
   </div>
-
-
   <br>
 
   <button type="submit" value="Save" class="btn btn-warning">Sửa</button>

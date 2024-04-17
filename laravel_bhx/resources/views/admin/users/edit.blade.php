@@ -25,7 +25,7 @@
       <input type="text" class="form-control" id="Email" name="Email" value="{{$users->Email}}">
     </div>
     <br>
-    <button type="submit" value="Save" class="btn btn-primary">Submit</button>
+    <button type="submit" value="Save" class="btn btn-warning">Sửa</button>
   </form>
 </div>
 @endsection
