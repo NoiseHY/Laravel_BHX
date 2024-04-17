@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\ChiTietSanPham;
-use App\Models\SanPham;
 use App\Models\ChiTietGioHang;
+
+use App\Models\SanPham;
+use App\Models\LoaiSanPham;
 
 class ChiTietSanPhamControllers_Users extends Controller
 {
@@ -26,14 +28,23 @@ class ChiTietSanPhamControllers_Users extends Controller
   public function show($id)
   {
     $products = SanPham::find($id);
-    $details = ChiTietSanPham::find($id);
+
+    // $category_id = $products->MaLoai;
+    // $category = LoaiSanPham::find($category_id);
+    $cat = SanPham::where('MaLoai', $products->MaLoai)->get();
+
+    $info = ChiTietSanPham::find($id);
+    $images = $info->HinhAnh;
 
     $number = ChiTietGioHang::count();
 
     return view("users.products.index")->with([
-      "details" => $details,
+      "info" => $info,
       "products" => $products,
-      "number" => $number
+      "number" => $number,
+      "images" => $images,
+      // 'category' => $category,
+      'cat' => $cat
     ]);
   }
 }

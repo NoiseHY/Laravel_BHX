@@ -14,7 +14,7 @@
           </div>
 
           <!-- category -->
-          
+
           <div class="col-lg-6">
             <h4 class="fw-bold mb-3">{{$products->TenSP}}</h4>
             <p class="mb-3">Category: Vegetables</p>
@@ -43,7 +43,7 @@
             </div>
             <a href="#" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
           </div>
-          
+
           <!-- end -->
 
           <div class="col-lg-12">
@@ -53,9 +53,37 @@
                 <button class="nav-link border-white border-bottom-0" type="button" role="tab" id="nav-mission-tab" data-bs-toggle="tab" data-bs-target="#nav-mission" aria-controls="nav-mission" aria-selected="false">Reviews</button>
               </div>
             </nav>
+
             <div class="tab-content mb-5">
+
               <div class="tab-pane active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-                <p>Thông tin khác : {{$details->ThongTinKhac}} </p>
+
+                <div class="vesitable">
+
+                  <div class="owl-carousel vegetable-carousel justify-content-center">
+                    @if(is_string($info->HinhAnh))
+                    @php
+                    $images = json_decode($info->HinhAnh);
+                    @endphp
+
+                    @else
+                    <!-- Xử lý khi không có hình ảnh -->
+
+                    @endif
+                    @foreach ($images as $image)
+                    <div class="border border-primary rounded position-relative vesitable-item">
+                      <div class="vesitable-img">
+                        <img src="{{ asset('uploads/' . $products->TenSP . '/' . $image) }}" class="img-thumbnail" alt="Hình ảnh sản phẩm" style="max-width: 200px; max-height: 200px;">
+
+                      </div>
+                    </div>
+                    @endforeach
+                  </div>
+                </div>
+
+
+
+                <p>Thông tin khác : {{$info->ThongTinKhac}} </p>
                 <!-- <p>Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish filefish Antarctic
                   icefish goldeye aholehole trumpetfish pilot fish airbreathing catfish, electric ray sweeper.</p> -->
                 <div class="px-2">
@@ -66,7 +94,7 @@
                           <p class="mb-0">Thương hiệu </p>
                         </div>
                         <div class="col-6">
-                          <p class="mb-0">{{$details->ThuongHieu}}</p>
+                          <p class="mb-0">{{$info->ThuongHieu}}</p>
                         </div>
                       </div>
                       <div class="row text-center align-items-center justify-content-center py-2">
@@ -74,16 +102,16 @@
                           <p class="mb-0">Khối lượng</p>
                         </div>
                         <div class="col-6">
-                          <p class="mb-0">{{$details->KhoiLuong}}</p>
+                          <p class="mb-0">{{$info->KhoiLuong}}</p>
                         </div>
                       </div>
-                      
+
                       <div class="row text-center align-items-center justify-content-center py-2">
                         <div class="col-6">
                           <p class="mb-0">Thành phần</p>
                         </div>
                         <div class="col-6">
-                          <p class="mb-0">{{$details->ThanhPhan}}</p>
+                          <p class="mb-0">{{$info->ThanhPhan}}</p>
                         </div>
                       </div>
 
@@ -92,7 +120,7 @@
                           <p class="mb-0">Hướng dẫn sử dụng </p>
                         </div>
                         <div class="col-6">
-                          <p class="mb-0">{{$details->HuongDanSuDung}}</p>
+                          <p class="mb-0">{{$info->HuongDanSuDung}}</p>
                         </div>
                       </div>
 
@@ -101,7 +129,7 @@
                           <p class="mb-0">Hạn sử dụng </p>
                         </div>
                         <div class="col-6">
-                          <p class="mb-0">{{$details->HanSuDung}}</p>
+                          <p class="mb-0">{{$info->HanSuDung}}</p>
                         </div>
                       </div>
 
@@ -110,7 +138,7 @@
                           <p class="mb-0">Bảo quản </p>
                         </div>
                         <div class="col-6">
-                          <p class="mb-0">{{$details->BaoQuan}}</p>
+                          <p class="mb-0">{{$info->BaoQuan}}</p>
                         </div>
                       </div>
 
@@ -119,7 +147,7 @@
                           <p class="mb-0">Sản xuất tại </p>
                         </div>
                         <div class="col-6">
-                          <p class="mb-0">{{$details->SanXuatTai}}</p>
+                          <p class="mb-0">{{$info->SanXuatTai}}</p>
                         </div>
                       </div>
                     </div>
@@ -173,7 +201,7 @@
               </div>
             </div>
           </div>
-          
+
         </div>
       </div>
       <div class="col-lg-4 col-xl-3">
@@ -183,43 +211,9 @@
               <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
               <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
             </div>
-            <div class="mb-4">
-              <h4>Categories</h4>
-              <ul class="list-unstyled fruite-categorie">
-                <li>
-                  <div class="d-flex justify-content-between fruite-name">
-                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Apples</a>
-                    <span>(3)</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="d-flex justify-content-between fruite-name">
-                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Oranges</a>
-                    <span>(5)</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="d-flex justify-content-between fruite-name">
-                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Strawbery</a>
-                    <span>(2)</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="d-flex justify-content-between fruite-name">
-                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Banana</a>
-                    <span>(8)</span>
-                  </div>
-                </li>
-                <li>
-                  <div class="d-flex justify-content-between fruite-name">
-                    <a href="#"><i class="fas fa-apple-alt me-2"></i>Pumpkin</a>
-                    <span>(5)</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
+
           </div>
-          
+
           <div class="col-lg-12">
             <h4 class="mb-4">Featured products</h4>
             <div class="d-flex align-items-center justify-content-start">
@@ -353,124 +347,32 @@
         </div>
       </div>
     </div>
-    <h1 class="fw-bold mb-0">Related products</h1>
+
+    <h1 class="fw-bold mb-0">Các sản phẩm liên quan</h1>
+
     <div class="vesitable">
       <div class="owl-carousel vegetable-carousel justify-content-center">
+        @foreach($cat as $cat)
         <div class="border border-primary rounded position-relative vesitable-item">
           <div class="vesitable-img">
-            <img src="/users_tmp/img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
+            <img src="{{asset('uploads/' . $cat->TenSP . '/' . $cat->HinhAnh)}}" class="img-fluid rounded" alt="Image">
           </div>
           <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
           <div class="p-4 pb-0 rounded-bottom">
-            <h4>Parsely</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+            <h4>{{$cat->TenSP}}</h4>
+            <p>{{$cat->MoTa}}</p>
             <div class="d-flex justify-content-between flex-lg-wrap">
-              <p class="text-dark fs-5 fw-bold">$4.99 / kg</p>
+              <p class="text-dark fs-5 fw-bold">{{$cat->DonGia}}</p>
               <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
             </div>
           </div>
         </div>
-        <div class="border border-primary rounded position-relative vesitable-item">
-          <div class="vesitable-img">
-            <img src="/users_tmp/img/vegetable-item-1.jpg" class="img-fluid w-100 rounded-top" alt="">
-          </div>
-          <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-          <div class="p-4 pb-0 rounded-bottom">
-            <h4>Parsely</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-            <div class="d-flex justify-content-between flex-lg-wrap">
-              <p class="text-dark fs-5 fw-bold">$4.99 / kg</p>
-              <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-            </div>
-          </div>
-        </div>
-        <div class="border border-primary rounded position-relative vesitable-item">
-          <div class="vesitable-img">
-            <img src="img/vegetable-item-3.png" class="img-fluid w-100 rounded-top bg-light" alt="">
-            
-          </div>
-          <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-          <div class="p-4 pb-0 rounded-bottom">
-            <h4>Banana</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-            <div class="d-flex justify-content-between flex-lg-wrap">
-              <p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
-              <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-            </div>
-          </div>
-        </div>
-        <div class="border border-primary rounded position-relative vesitable-item">
-          <div class="vesitable-img">
-            <img src="/users_tmp/img/vegetable-item-4.jpg" class="img-fluid w-100 rounded-top" alt="">
-          </div>
-          <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-          <div class="p-4 pb-0 rounded-bottom">
-            <h4>Bell Papper</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-            <div class="d-flex justify-content-between flex-lg-wrap">
-              <p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
-              <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-            </div>
-          </div>
-        </div>
-        <div class="border border-primary rounded position-relative vesitable-item">
-          <div class="vesitable-img">
-            <img src="/users_tmp/img/vegetable-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
-          </div>
-          <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-          <div class="p-4 pb-0 rounded-bottom">
-            <h4>Potatoes</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-            <div class="d-flex justify-content-between flex-lg-wrap">
-              <p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
-              <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-            </div>
-          </div>
-        </div>
-        <div class="border border-primary rounded position-relative vesitable-item">
-          <div class="vesitable-img">
-            <img src="/users_tmp/img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
-          </div>
-          <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-          <div class="p-4 pb-0 rounded-bottom">
-            <h4>Parsely</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-            <div class="d-flex justify-content-between flex-lg-wrap">
-              <p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
-              <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-            </div>
-          </div>
-        </div>
-        <div class="border border-primary rounded position-relative vesitable-item">
-          <div class="vesitable-img">
-            <img src="/users_tmp/img/vegetable-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
-          </div>
-          <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-          <div class="p-4 pb-0 rounded-bottom">
-            <h4>Potatoes</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-            <div class="d-flex justify-content-between flex-lg-wrap">
-              <p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
-              <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-            </div>
-          </div>
-        </div>
-        <div class="border border-primary rounded position-relative vesitable-item">
-          <div class="vesitable-img">
-            <img src="/users_tmp/img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
-          </div>
-          <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
-          <div class="p-4 pb-0 rounded-bottom">
-            <h4>Parsely</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-            <div class="d-flex justify-content-between flex-lg-wrap">
-              <p class="text-dark fs-5 fw-bold">$7.99 / kg</p>
-              <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-            </div>
-          </div>
-        </div>
+        @endforeach
+
+
       </div>
     </div>
+    <!-- end  -->
   </div>
 </div>
 
