@@ -20,7 +20,7 @@ class TrangChuControllers extends Controller
         //
         $number = ChiTietGioHang::count();
 
-        $products = SanPham::all();
+        $products = SanPham::paginate(9);
 
         return view("users.index", [
             'products' => $products,

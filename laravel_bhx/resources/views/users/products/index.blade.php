@@ -65,11 +65,6 @@
                     @php
                     $images = json_decode($info->HinhAnh);
                     @endphp
-
-                    @else
-                    <!-- Xử lý khi không có hình ảnh -->
-
-                    @endif
                     @foreach ($images as $image)
                     <div class="border border-primary rounded position-relative vesitable-item">
                       <div class="vesitable-img">
@@ -78,6 +73,12 @@
                       </div>
                     </div>
                     @endforeach
+                    @else
+                    <!-- Xử lý khi không có hình ảnh -->
+                    <p>Không có hình ảnh</p>
+
+                    @endif
+
                   </div>
                 </div>
 

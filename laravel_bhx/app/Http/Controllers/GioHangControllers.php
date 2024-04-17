@@ -33,6 +33,8 @@ class GioHangControllers extends Controller
 
     // $products = SanPham::find($productID);
 
+    $number = ChiTietGioHang::count();
+
     $products = [];
 
     foreach ($cartItems as $item) {
@@ -47,8 +49,8 @@ class GioHangControllers extends Controller
       $products[] = $product;
     }
 
-
-    return view('users.cart.index')->with('cartItems', $cartItems)->with('products', $products);
+    return view('users.cart.index', ['cartItems' => $cartItems, 'products'=>$products, 'number' => $number]);
+    // return view('users.cart.index')->with('cartItems', $cartItems)->with('products', $products);
   }
 
   /**
