@@ -24,9 +24,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                    $totalPrice = 0; 
+                    @endphp
+
                     @foreach($cartItems as $key => $cartItem)
                     @php
                     $product = isset($products[$key]) ? $products[$key] : null;
+                    
+                    $totalPrice += $product->DonGia * $cartItem->SoLuong;
                     @endphp
                     <tr>
                         <th scope="row">
@@ -48,7 +54,7 @@
                                         <i class="fa fa-minus"></i>
                                     </button>
                                 </div>
-                                
+
                                 <!-- soluong -->
                                 <input type="text" class="form-control form-control-sm text-center border-0" value="{{ $cartItem->SoLuong }}">
                                 <div class="input-group-btn">
@@ -56,9 +62,11 @@
                                         <i class="fa fa-plus"></i>
                                     </button>
                                 </div>
+
+
                             </div>
                         </td>
-                        
+
                         <!-- dd($product->DonGia, $product->SoLuong); -->
 
                         <td>
@@ -82,16 +90,16 @@
                 </tbody>
             </table>
         </div>
-        
+
         <div class="row g-4 justify-content-end">
             <div class="col-8"></div>
             <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
                 <div class="bg-light rounded">
                     <div class="p-4">
-                        <h1 class="display-6 mb-4">Giỏ hàng <span class="fw-normal">Tổng tiền</span></h1>
+                        <h1 class="fw-normal">Tổng tiền</h1>
                         <div class="d-flex justify-content-between mb-4">
                             <h5 class="mb-0 me-4">Tổng tiền :</h5>
-                            <p class="mb-0">$96.00</p>
+                            <p class="mb-0">{{$totalPrice }} đ</p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h5 class="mb-0 me-4">Shipping : </h5>
@@ -99,11 +107,11 @@
                                 <p class="mb-0">50.000 đ</p>
                             </div>
                         </div>
-                        <p class="mb-0 text-end">Shipping to ...</p>
+                        <!-- <p class="mb-0 text-end">Shipping to ...</p> -->
                     </div>
                     <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                         <h5 class="mb-0 ps-4 me-4">Thành tiền :</h5>
-                        <p class="mb-0 pe-4">$99.00</p>
+                        <p class="mb-0 pe-4">{{$totalPrice + 50000}}</p>
                     </div>
                     <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Thanh toán</button>
                 </div>
