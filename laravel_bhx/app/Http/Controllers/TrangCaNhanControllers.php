@@ -27,8 +27,9 @@ class TrangCaNhanControllers extends Controller
 
     $user = NguoiDung::find($id);
 
+
     if ($user) {
-      return view("users.profile.index")->with("users", $user);
+      return view("users.profile.index", ['user' => $user]);
     } else {
       return "Không tìm thấy người dùng với tên "  . $id;
     }
@@ -44,13 +45,14 @@ class TrangCaNhanControllers extends Controller
   public function update(Request $request, $id)
   {
     $user = Nguoidung::find($id);
-    if (!$user) {
-      return redirect()->back()->with('error', 'Không tìm thấy người dùng');
-    }
+    // if (!$user) {
+    //   return redirect()->back()->with('error', 'Không tìm thấy người dùng');
+    // }
 
     $input = $request->all();
     $user->update($input);
 
-    return redirect("profile/" . $user->TenDangNhap)->with("message", "Cập nhật thành công");
+    return redirect("profile/" . $user->MaNguoiDung)->with("message", "Cập nhật thành công");
   }
+  
 }

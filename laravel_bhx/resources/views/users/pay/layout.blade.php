@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi" class="h-100">
 
 <head>
   <meta charset="utf-8">
-  <title>Bách hóa xanh</title>
+  <title>Bách hóa xanh - Giỏ hàng</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -19,7 +19,7 @@
 
   <!-- Libraries Stylesheet -->
   <link href="/users_tmp/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-  <link href="/users_tmp/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="/users_tmp/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
 
   <!-- Customized Bootstrap Stylesheet -->
@@ -38,10 +38,8 @@
   <!-- Spinner End -->
 
 
-
   <!-- Navbar start -->
   <div class="container-fluid fixed-top">
-
     <div class="container topbar bg-primary d-none d-lg-block">
       <div class="d-flex justify-content-between">
         <div class="top-info ps-2">
@@ -51,7 +49,6 @@
 
       </div>
     </div>
-    <!-- start -->
     <div class="container px-0">
       <nav class="navbar navbar-light bg-white navbar-expand-xl">
         <a href="{{url('/home')}}" class="navbar-brand">
@@ -62,20 +59,25 @@
         </button>
         <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
           <div class="navbar-nav mx-auto">
-            <a href="shop.html" class="nav-item nav-link active">Trang chủ</a>
-            <a href="shop-detail.html" class="nav-item nav-link">Danh mục</a>
-            <a href="shop-detail.html" class="nav-item nav-link">Giúp đỡ</a>
+            <a href="index.html" class="nav-item nav-link">Trang chủ</a>
+            <a href="shop.html" class="nav-item nav-link">Danh mục</a>
+            <a href="shop-detail.html" class="nav-item nav-link">Trợ giúp</a>
 
           </div>
 
-          <div class="d-flex align-items-center"> <button class="btn btn-light me-3 rounded-pill" data-bs-toggle="modal" data-bs-target="#searchModal">
+          <div class="d-flex align-items-center">
+            <button class="btn btn-light me-3 rounded-pill" data-bs-toggle="modal" data-bs-target="#searchModal">
               <i class="fas fa-search text-primary"></i>
             </button>
+            <a href="#" class="position-relative me-4 my-auto">
+              <!-- number -->
+            </a>
             <div class="dropdown">
-              <a href="#" class="dropdown-toggle d-flex align-items-center text-dark" data-bs-toggle="dropdown">
-                <i class="fas fa-user fa-lg"></i> </a>
-              <ul class="dropdown-menu dropdown-menu-end">
-                <li><a href="#" class="dropdown-item">Tài khoản</a></li>
+              <button class="btn btn-light dropdown-toggle me-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-user fa-lg"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                <li><a href="{{ url('/profile/' . session('user_id')) }}" class="dropdown-item">Trang cá nhân</a></li>
                 <li><a href="#" class="dropdown-item">Cài đặt</a></li>
                 <li>
                   <hr class="dropdown-divider">
@@ -84,11 +86,11 @@
               </ul>
             </div>
           </div>
-          
+
+
         </div>
       </nav>
     </div>
-    <!-- end -->
   </div>
   <!-- Navbar End -->
 
@@ -115,20 +117,21 @@
 
   <!-- Single Page Header start -->
   <div class="container-fluid page-header py-5">
-    <h1 class="text-center text-white display-6">Bách hóa xanh</h1>
+    <h1 class="text-center text-white display-6">Giỏ hàng</h1>
     <ol class="breadcrumb justify-content-center mb-0">
       <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-      <li class="breadcrumb-item active text-white">Trang cá nhân</li>
+      <li class="breadcrumb-item active text-white">Giỏ hàng</li>
     </ol>
   </div>
   <!-- Single Page Header End -->
 
 
-  <!-- Fruits Shop Start-->
-  <div class="container-fluid fruite py-5">
+  <!-- Cart Page Start -->
+  <div class="container">
     @yield('content')
   </div>
-  <!-- Fruits Shop End-->
+
+  <!-- Cart Page End -->
 
 
   <!-- Footer Start -->
@@ -138,36 +141,53 @@
         <div class="row g-4">
           <div class="col-lg-3">
             <a href="#">
-              <h1 class="text-primary mb-0">Bách hóa xanh</h1>
+              <h1 class="text-primary mb-0">Fruitables</h1>
               <p class="text-secondary mb-0">Fresh products</p>
             </a>
           </div>
-
-
+          <div class="col-lg-6">
+            <div class="position-relative mx-auto">
+              <input class="form-control border-0 w-100 py-3 px-4 rounded-pill" type="number" placeholder="Your Email">
+              <button type="submit" class="btn btn-primary border-0 border-secondary py-3 px-4 position-absolute rounded-pill text-white" style="top: 0; right: 0;">Subscribe Now</button>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="d-flex justify-content-end pt-3">
+              <a class="btn  btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-twitter"></i></a>
+              <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
+              <a class="btn btn-outline-secondary me-2 btn-md-square rounded-circle" href=""><i class="fab fa-youtube"></i></a>
+              <a class="btn btn-outline-secondary btn-md-square rounded-circle" href=""><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Footer End -->
+    </div>
+  </div>
+  <!-- Footer End -->
+
+  <!-- Copyright Start -->
+
+  <!-- Copyright End -->
 
 
-      <!-- Copyright End -->
+
+  <!-- Back to Top -->
+  <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
 
 
+  <!-- JavaScript Libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/users_tmp/lib/easing/easing.min.js"></script>
+  <script src="/users_tmp/lib/waypoints/waypoints.min.js"></script>
+  <script src="/users_tmp/lib/lightbox/js/lightbox.min.js"></script>
+  <script src="/users_tmp/lib/owlcarousel/owl.carousel.min.js"></script>
 
-      <!-- Back to Top -->
-      <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+  <!-- Template Javascript -->
+  <script src="/users_tmp/js/main.js"></script>
 
-
-      <!-- JavaScript Libraries -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-      <script src="/users_tmp/lib/easing/easing.min.js"></script>
-      <script src="/users_tmp/lib/waypoints/waypoints.min.js"></script>
-      <script src="/users_tmp/lib/lightbox/js/lightbox.min.js"></script>
-      <script src="/users_tmp/lib/owlcarousel/owl.carousel.min.js"></script>
-
-      <!-- Template Javascript -->
-      <script src="/users_tmp/js/main.js"></script>
+  <!-- <script src="/users_tmp/js/cart_js.js"></script> -->
 </body>
 
 </html>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChiTietSanPhamControllers;
 use App\Http\Controllers\GioHangControllers;
+use App\Http\Controllers\KhachHangControllers;
 use App\Http\Controllers\NguoiDungControllers;
 use App\Http\Controllers\SanPhamControllers;
 use App\Http\Controllers\TrangChuControllers;
@@ -44,6 +45,9 @@ Route::get('/admin', function () {
 //     return view('users.cart.index');
 // });
 
+Route::get('pay', function(){
+    return view('users.pay.index');
+});
 
 
 Route::resource("/users", NguoiDungControllers::class);
@@ -54,6 +58,8 @@ Route::resource("/login", LoginControllers::class);
 Route::post('/logout', [LoginControllers::class, 'logout'])->name('logout');
 
 Route::resource("/profile", TrangCaNhanControllers::class);
+Route::resource('/customer', KhachHangControllers::class);
+
 Route::resource('/category', LoaiSanPhamControllers::class);
 
 Route::resource("/cart", GioHangControllers::class);

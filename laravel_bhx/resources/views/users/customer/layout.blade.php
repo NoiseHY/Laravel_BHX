@@ -75,7 +75,7 @@
               <a href="#" class="dropdown-toggle d-flex align-items-center text-dark" data-bs-toggle="dropdown">
                 <i class="fas fa-user fa-lg"></i> </a>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li><a href="#" class="dropdown-item">Tài khoản</a></li>
+                <li><a href="#" class="dropdown-item">Người dùng</a></li>
                 <li><a href="#" class="dropdown-item">Cài đặt</a></li>
                 <li>
                   <hr class="dropdown-divider">

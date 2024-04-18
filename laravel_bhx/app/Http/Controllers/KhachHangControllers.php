@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\KhachHang;
+
 class KhachHangControllers extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * 
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         //
+
     }
 
     /**
@@ -35,6 +38,7 @@ class KhachHangControllers extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**
@@ -46,6 +50,11 @@ class KhachHangControllers extends Controller
     public function show($id)
     {
         //
+        $customer = KhachHang::find($id);
+
+        return view('users.customer.index', ['customer' => $customer]);
+
+
     }
 
     /**
@@ -69,6 +78,13 @@ class KhachHangControllers extends Controller
     public function update(Request $request, $id)
     {
         //
+        $customer = KhachHang::find($id);
+
+        $input = $request->all();
+
+        $customer->update($input);
+
+        return redirect("customer/" . $customer->MaNguoiDung)->with("message", " Cập nhật thành công");
     }
 
     /**

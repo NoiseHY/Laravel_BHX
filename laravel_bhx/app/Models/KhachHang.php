@@ -11,7 +11,15 @@ class KhachHang extends Model
 
     public $timestamps = false;
 
-    protected $table = 'khachhang';
-    protected $primaryKey = 'MaKH';
+    protected $table = 'KhachHang';
+    protected $primaryKey = 'MaNguoiDung';
 
+    protected $fillable = [
+        'MaKH',
+        'TenKH',
+        'DiaChi',
+        'DienThoai',
+        'Email',
+        'MaNguoiDung',
+    ];
 }

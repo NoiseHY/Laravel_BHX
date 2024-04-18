@@ -83,8 +83,8 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                                 @if(session('user_id'))
-                                <li><a href="{{ url('/profile/' . session('user_id')) }}" class="dropdown-item">Trang cá nhân</a></li>
-                                <li><a href="#" class="dropdown-item">Cài đặt</a></li>
+                                <li><a href="{{ url('/profile/' . session('user_id')) }}" class="dropdown-item">Tài khoản</a></li>
+                                <li><a href="{{url('/customer/' .session('user_id'))}}" class="dropdown-item">Người dùng</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
