@@ -5,6 +5,11 @@
     <div class="row g-4 mb-5">
       <div class="col-lg-8 col-xl-9">
         <div class="row g-4">
+          @if (\Session::has('message'))
+          <div class="alert alert-success">
+            {{ \Session::get('message') }}
+          </div>
+          @endif
           <div class="col-lg-6">
             <div class="border rounded">
               <a href="#">
@@ -28,22 +33,57 @@
             </div>
             <p class="mb-4">{{$products->MoTa}}</p>
             <!-- <p class="mb-4">Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish</p> -->
+
+            @php
+            $numbers = 1;
+            @endphp
+
             <div class="input-group quantity mb-5" style="width: 100px;">
               <div class="input-group-btn">
-                <button class="btn btn-sm btn-minus rounded-circle bg-light border">
+                <button id="decreaseQuantity" class="btn btn-sm btn-minus rounded-circle bg-light border">
                   <i class="fa fa-minus"></i>
                 </button>
               </div>
-              <input type="text" class="form-control form-control-sm text-center border-0" value="1">
+              <input type="text" id="quantityInput" class="form-control form-control-sm text-center border-0" value="{{ $numbers }}">
               <div class="input-group-btn">
-                <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                <button id="increaseQuantity" class="btn btn-sm btn-plus rounded-circle bg-light border">
                   <i class="fa fa-plus"></i>
                 </button>
               </div>
             </div>
-            <a href="#" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-          </div>
+            <form id="cartForm" method="POST" action="{{ url('/cart/' . session('user_id') . '/' . $products->MaSP . '/' . $numbers) }}">
+              @csrf
+              <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary">
+                <i class="fa fa-shopping-bag me-2 text-primary"></i> Thêm vào giỏ
+              </button>
+            </form>
 
+            <script>
+              document.getElementById('decreaseQuantity').addEventListener('click', function() {
+                var quantityInput = document.getElementById('quantityInput');
+                var currentQuantity = parseInt(quantityInput.value);
+                if (currentQuantity > 1) {
+                  quantityInput.value = currentQuantity - 0;
+                }
+                updateFormAction();
+              });
+
+              document.getElementById('increaseQuantity').addEventListener('click', function() {
+                var quantityInput = document.getElementById('quantityInput');
+                var currentQuantity = parseInt(quantityInput.value);
+                quantityInput.value = currentQuantity + 0;
+                updateFormAction();
+              });
+
+              function updateFormAction() {
+                var numbers = document.getElementById('quantityInput').value;
+                var form = document.getElementById('cartForm');
+                form.action = "{{ url('/cart/' . session('user_id') . '/' . $products->MaSP) }}" + '/' + (parseInt(numbers) + 1);
+              }
+            </script>
+
+
+          </div>
           <!-- end -->
 
           <div class="col-lg-12">
@@ -156,6 +196,7 @@
                 </div>
                 <!-- end -->
               </div>
+              <!-- cmt -->
               <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
                 <div class="d-flex">
                   <img src="/users_tmp/img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
@@ -205,6 +246,7 @@
 
         </div>
       </div>
+
       <div class="col-lg-4 col-xl-3">
         <div class="row g-4 fruite">
           <div class="col-lg-12">
@@ -377,7 +419,9 @@
   </div>
 </div>
 
+<script>
 
+</script>
 
 
 @endsection

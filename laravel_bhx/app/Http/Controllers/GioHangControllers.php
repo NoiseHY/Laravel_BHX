@@ -60,14 +60,13 @@ class GioHangControllers extends Controller
    * @return \Illuminate\Http\Response
    * @param  int  $user_id
    * @param  int  $products_id
+   * @param  int  $number
    */
-  public function store($user_id, $products_id)
+  public function store($user_id, $products_id, $number)
   {
     $cart = Giohang::find($user_id);
 
     $cartID = $cart->MaGioHang;
-
-    $number = 1;
 
     $input = [
       'MaGioHang' => $cartID,

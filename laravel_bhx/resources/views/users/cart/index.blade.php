@@ -48,6 +48,8 @@
                                         <i class="fa fa-minus"></i>
                                     </button>
                                 </div>
+                                
+                                <!-- soluong -->
                                 <input type="text" class="form-control form-control-sm text-center border-0" value="{{ $cartItem->SoLuong }}">
                                 <div class="input-group-btn">
                                     <button class="btn btn-sm btn-plus rounded-circle bg-light border">

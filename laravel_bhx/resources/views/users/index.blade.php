@@ -17,7 +17,7 @@
           <p>{{ Str::limit($product->MoTa, 100) }}</p>
           <div class="d-flex justify-content-between flex-lg-wrap">
             <p class="text-dark fs-5 fw-bold mb-0">{{ $product->DonGia }} đ</p>
-            <form method="POST" action="{{ url('/cart/' . session('user_id') . '/' . $product->MaSP) }}">
+            <form method="POST" action="{{ url('/cart/' . session('user_id') . '/' . $product->MaSP .'/'. 1) }}">
               @csrf
               <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Thêm vào giỏ</button>
             </form>
