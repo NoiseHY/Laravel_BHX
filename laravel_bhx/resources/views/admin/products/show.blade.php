@@ -54,7 +54,7 @@
             @else
             <!-- Hiển thị một thông báo hoặc hình ảnh mặc định nếu không có hình ảnh -->
             <p>Không có hình ảnh</p>
-            @endif
+            @endif 
 
           </div>
         </div>

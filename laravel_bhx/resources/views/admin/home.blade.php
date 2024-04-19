@@ -89,7 +89,15 @@
         </ul>
       </li>
 
-
+      <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+          <svg class="nav-icon">
+            <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+          </svg> Loại sản phẩm</a>
+        <ul class="nav-group-items compact">  
+          <li class="nav-item"><a class="nav-link" href="{{route('categories.index')}}"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Danh sách loại sản phẩm</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{route('products.create')}}"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Thêm loại sản phẩm</a></li>
+        </ul>
+      </li>
 
 
       <div class="sidebar-footer border-top d-none d-md-flex">

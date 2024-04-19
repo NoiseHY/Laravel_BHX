@@ -2,6 +2,11 @@
 @section('content')
 <div class="container">
   <h2>Thêm sản phẩm</h2>
+  @if (\Session::has('message'))
+  <div class="alert alert-success">
+    {{ \Session::get('message') }}
+  </div>
+  @endif
   <form action="{{ url('products') }}" method="post" enctype="multipart/form-data">
 
     @csrf
@@ -25,6 +30,15 @@
       <label for="exampleTextarea">Mô tả</label>
       <textarea class="form-control" id="MoTa" name="MoTa" rows="3" placeholder="Mô tả"></textarea>
     </div>
+    </br>
+
+
+    <select class="form-select" aria-label="Chọn thể loại" name="MaLoai">
+      <option value="">Tất cả thể loại</option>
+      @foreach($category as $category)
+      <option id="MaLoai" value="{{$category->MaLoai}}">{{$category->TenLoai}}</option>
+      @endforeach
+    </select>
 
     <div class="form-group">
       <label for="exampleInputImage">Hình ảnh</label>

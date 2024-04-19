@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\SanPham;
 use App\Models\ChiTietSanPham;
+use App\Models\LoaiSanPham;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -19,8 +21,10 @@ class SanPhamControllers extends Controller
     {
         //
         $products = SanPham::all();
+
+        $category = LoaiSanPham::all();
         
-        return view("admin.products.index")->with("products", $products);
+        return view("admin.products.index", ['products' => $products, 'category' => $category]);
     }
 
     /**
@@ -31,7 +35,9 @@ class SanPhamControllers extends Controller
     public function create()
     {
         //
-        return view("admin.products.create");
+        $category = LoaiSanPham::all();
+
+        return view("admin.products.create")->with('category', $category);
     }
 
     /**
@@ -63,7 +69,9 @@ class SanPhamControllers extends Controller
 
         
         $input = $request->all();
-        $input['HinhAnh'] = $imageName; 
+        $input['HinhAnh'] = $imageName;
+        $input['MaLoai'] = $request->MaLoai;
+         
         $products = SanPham::create($input);
 
         $chiTietSanPham = new ChiTietSanPham();
@@ -72,10 +80,8 @@ class SanPhamControllers extends Controller
 
         $chiTietSanPham->save();
 
-        return redirect('products')->with('success', 'Thêm thành công');
+        return redirect('products/create')->with('message', 'Thêm thành công');
     }
-
-
 
 
 
@@ -91,6 +97,8 @@ class SanPhamControllers extends Controller
         //
         $products = SanPham::find($id);
         $products_info = ChiTietSanPham::find($id);
+        $category = LoaiSanPham::all();
+
         return view("admin.products.show", ['products' => $products, 'products_info' => $products_info]);
     }
 
@@ -145,7 +153,7 @@ class SanPhamControllers extends Controller
  
          $product->save();
  
-         return redirect()->route('products.index')->with('success', 'Product updated successfully!');
+         return redirect()->route('products.index')->with('message', 'Cập nhật thành công!');
      }
 
     /**

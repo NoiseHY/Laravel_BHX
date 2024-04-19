@@ -11,6 +11,7 @@ use App\Http\Controllers\TrangCaNhanControllers;
 use App\Http\Controllers\LoaiSanPhamControllers;
 
 use App\Http\Controllers\ChiTietSanPhamControllers_Users;
+use App\Http\Controllers\LoaiSanPhamControllers_users;
 use App\Models\LoaiSanPham;
 use Illuminate\Support\Facades\Route;
 
@@ -60,7 +61,8 @@ Route::post('/logout', [LoginControllers::class, 'logout'])->name('logout');
 Route::resource("/profile", TrangCaNhanControllers::class);
 Route::resource('/customer', KhachHangControllers::class);
 
-Route::resource('/category', LoaiSanPhamControllers::class);
+Route::resource('/category', LoaiSanPhamControllers_users::class);
+Route::resource('/categories', LoaiSanPhamControllers::class);
 
 Route::resource("/cart", GioHangControllers::class);
 Route::post('/cart/{user_id}/{product_id}/{number}', [GioHangControllers::class, 'store'])->name('cart.add');
