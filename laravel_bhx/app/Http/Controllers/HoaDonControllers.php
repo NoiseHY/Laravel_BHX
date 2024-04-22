@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\ChiTietHoaDon;
+use App\Models\HoaDon;
+use App\Models\SanPham;
+use App\Models\KhachHang;
+
 class HoaDonControllers extends Controller
 {
     /**
@@ -13,7 +18,7 @@ class HoaDonControllers extends Controller
      */
     public function index()
     {
-        //
+        return view('users.pay.index');
     }
 
     /**
@@ -45,7 +50,24 @@ class HoaDonControllers extends Controller
      */
     public function show($id)
     {
-        //
+        $pay = HoaDon::find($id);
+
+        $info = ChiTietHoaDon::where('MaHD', $id)->get();
+
+        $products = [];
+        foreach ($info as $detail) {
+            $product = SanPham::find($detail->MaSP);
+            if ($product) {
+                $products[] = $product;
+            }
+        }
+
+        $customer = KhachHang::find(session('user_id'));
+
+        return view('users.pay.index', [
+            'info' => $info, 'products' => $products,
+            'customer' => $customer, 'pay' =>$pay
+        ]);
     }
 
     /**

@@ -31,7 +31,7 @@ class ChiTietSanPhamControllers_Users extends Controller
 
     // $category_id = $products->MaLoai;
     // $category = LoaiSanPham::find($category_id);
-    $cat = SanPham::where('MaLoai', $products->MaLoai)->get();
+    $cat = SanPham::where('MaLoai', $products->MaLoai)->take(5)->get();
 
     $info = ChiTietSanPham::find($id);
     $images = $info->HinhAnh;

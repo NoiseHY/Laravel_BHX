@@ -27,7 +27,7 @@
             <a href="{{url('/products/' .$products->MaSP)}}" class="btn btn-primary">Chi tiết</a>
           </td>
 
-          <td><a href="{{url('/products/' .$products->MaSP .'/edit')}}" class="btn btn-warning">Sửa (Đang lỗi!)</a></td>
+          <td><a href="{{url('/products/' .$products->MaSP .'/edit')}}" class="btn btn-warning">Sửa</a></td>
 
           <td>
             <form method="POST" action="{{url('/products'.'/'.$products->MaSP)}}">

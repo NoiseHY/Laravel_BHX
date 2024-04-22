@@ -19,6 +19,50 @@ class LoaiSanPhamControllers extends Controller
     //
     $categories = LoaiSanPham::all();
 
-    return view('admin.categories.index', ['categories'=> $categories]);
+    return view('admin.categories.index', ['categories' => $categories]);
+  }
+  /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function show($id)
+  {
+    $categories = LoaiSanPham::find($id);
+    return view('admin.categories.show')->with('categories', $categories);
+  }
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function edit($id)
+  {
+    //
+    $categories = LoaiSanPham::find($id);
+
+    return view("admin.categories.edit")->with("categories", $categories);
+  }
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+
+  public function update(Request $request, $id)
+  {
+    $categories = LoaiSanPham::find($id);
+
+    $input = $request->all();
+
+    $categories->update($input);
+
+    $categories->save();
+
+    return redirect()->with('message', 'Cập nhật thành công !');
   }
 }

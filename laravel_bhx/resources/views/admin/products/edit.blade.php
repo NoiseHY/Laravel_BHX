@@ -35,16 +35,7 @@
       </div>
     </div>
 
-    <!-- <div class="form-group">
-      <label for="exampleInputImage">Hình ảnh</label>
-      <div class="input-group">
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" id="HinhAnh" name="HinhAnh" aria-describedby="imageHelp" >
-          <label class="custom-file-label" for="exampleInputImage">Chọn hình ảnh</label>
-        </div>
-      </div>
-      <small id="imageHelp" class="form-text text-muted">Chọn một hình ảnh từ thiết bị của bạn.</small>
-    </div> -->
+
     <br>
     
     <button type="submit" value="Save" class="btn btn-primary">Sửa</button>
