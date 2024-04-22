@@ -13,6 +13,12 @@ class ChiTietHoaDon extends Model
 
     protected $primaryKey = "MaHD";
 
-    protected $fillable = [];
-
+    protected $fillable = [
+        'MaChiTietHD',
+        'MaHD',
+        'MaSP',
+        'SoLuong',
+        'DonGia',
+        'ThanhTien'
+    ];
 }

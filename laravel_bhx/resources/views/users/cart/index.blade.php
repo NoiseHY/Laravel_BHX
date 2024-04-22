@@ -31,6 +31,10 @@
                     $product = isset($products[$key]) ? $products[$key] : null;
                     @endphp
 
+
+                    <?php
+                    // dd($product->MaSP);
+                    ?>
                     <tr>
                         <th>
                             <input type="checkbox" class="form-check-input product-checkbox" data-price="{{ $product->DonGia }}" data-quantity="{{ (isset($cartItem) && $cartItem->SoLuong > 0) ? $cartItem->SoLuong : 1 }}" data-product-id="{{ $product->id }}">
@@ -42,6 +46,8 @@
                                 <img src="{{ $product ? asset('uploads/' . $product->TenSP . '/' . $product->HinhAnh) : '' }}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
                             </div>
                         </th>
+
+
                         <td>
                             <p class="mb-0 mt-4">{{ $product ? $product->TenSP : '' }}</p>
                         </td>
@@ -91,34 +97,51 @@
 
         <div class="row g-4 justify-content-end">
             <div class="col-8"></div>
+
             <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
-                <div class="bg-light rounded">
-                    <div class="p-4">
-                        <h1 class="fw-normal">Tổng tiền</h1>
-                        <div class="d-flex justify-content-between mb-4">
-                            <h5 class="mb-0 me-4">Tổng tiền : </h5>
-                            <p id="total-price" class="mb-0">0 đ</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <h5 class="mb-0 me-4">Shipping : </h5>
-                            <div class="">
-                                <p class="mb-0">50.000 đ</p>
+                <form method="post" action="{{ url('pay') }}">
+                    {!! csrf_field() !!}
+
+                    <!-- input  -->
+                    <input type="hidden" name="product" value="{{$product->MaSP}}">
+
+                    <input type="hidden" name="quantities" >
+
+                    <input type="hidden" id="totalPrices" name="totalPrices" value="{{$product->DonGia}}">
+                    <!-- end  -->
+
+                    <div class="bg-light rounded">
+                        <div class="p-4">
+                            <h1 class="fw-normal">Tổng tiền</h1>
+                            <div class="d-flex justify-content-between mb-4">
+                                <h5 class="mb-0 me-4">Tổng tiền : </h5>
+                                <p id="total-price-display" class="mb-0">0 đ</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h5 class="mb-0 me-4">Shipping : </h5>
+                                <div class="">
+                                    <p class="mb-0">50.000 đ</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                        <h5 class="mb-0 ps-4 me-4">Thành tiền :</h5>
-                        <p id="total-price" class="mb-0 ps-4 me-4"> đ</p>
-                    </div>
 
-                    <!-- Thêm nút thanh toán -->
-                    <button id="checkout-button" class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Thanh toán</button>
-                </div>
+                        <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
+                            <h5 class="mb-0 ps-4 me-4">Thành tiền :</h5>
+                            <input class="form-control form-control-sm text-center border-0 quantity-input" id="total-price-input" name="total-price">
+                        </div>
+
+                        <!-- Thêm nút thanh toán -->
+                        <!-- <button id="checkout-button" class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Thanh toán</button> -->
+
+                        <button id="checkout-button" class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="submit" value="Save">Thanh toán</button>
+                </form>
+
             </div>
         </div>
-
-
     </div>
+
+
+</div>
 </div>
 
 <script>
@@ -173,8 +196,9 @@
                 var price = parseFloat(checkbox.getAttribute('data-price'));
                 total += quantity * price;
             });
-            document.getElementById('total-price').textContent = total + ' đ';
+            document.getElementById('total-price-display').textContent = total + ' đ';
         }
+
     });
 </script>
 
@@ -205,6 +229,11 @@
             var totalPrice = quantity * price;
             row.querySelector('#TongTien').textContent = totalPrice + ' đ';
             updateTotalPrice();
+
+            // Cập nhật giá trị của input ẩn "quantities"
+            var quantitiesInput = document.querySelector('input[name="quantities"]');
+            var productId = row.querySelector('.product-checkbox').getAttribute('data-product-id');
+            quantitiesInput.value = quantity + '|' + productId;
         }
 
         // Hàm cập nhật tổng tiền của tất cả sản phẩm trong giỏ hàng
@@ -217,10 +246,27 @@
                     total += quantity * price;
                 }
             });
-            document.getElementById('total-price').textContent = total + ' đ';
+            document.getElementById('total-price-display').textContent = total + ' đ';
+            // Sau khi cập nhật tổng tiền, cập nhật lại giá trị trong trường input ẩn
+            document.getElementById('total-price-input').value = total;
         }
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Lấy phần tử hiển thị tổng tiền
+        var totalPriceDisplay = document.getElementById('total-price-display');
+        // Lấy trường input ẩn để lưu trữ tổng tiền
+        var totalPriceInput = document.getElementById('total-price-input');
+
+        // Lấy giá trị ban đầu từ phần tử hiển thị và gán vào trường input
+        totalPriceInput.value = totalPriceDisplay.textContent.trim();
+
+        // Sau đó, bạn có thể thêm các sự kiện cập nhật tổng tiền tại đây (nếu cần)
+    });
 </script>
+
+
+
 
 
 

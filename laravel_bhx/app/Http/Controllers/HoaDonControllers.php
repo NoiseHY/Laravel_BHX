@@ -29,6 +29,7 @@ class HoaDonControllers extends Controller
     public function create()
     {
         //
+        return view('users.pay.index');
     }
 
     /**
@@ -39,7 +40,46 @@ class HoaDonControllers extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $input = $request->all();
+
+        $money = $request->input('total-price');
+
+        // dd($money, $input);
+
+        $customer = KhachHang::find(session('user_id'));
+        $customerId = $customer->MaKH;
+
+        $input['MaKH'] = $customerId;
+
+
+        $input['TrangThai'] = 1;
+        $input['NgayBan'] = now();
+        $input['TongTien'] = $money;
+
+        $pay = HoaDon::create($input);
+
+        $products = $request->input('product');
+
+        // dd($products);
+
+        $quantities = $request->input('quantities');
+        $totalPrices = $request->input('totalPrices');
+
+        // Lặp qua từng sản phẩm và tạo chi tiết hóa đơn cho mỗi sản phẩm
+        foreach ($products as $key => $product) {
+            $chiTietHoaDon = new ChiTietHoaDon([
+                'MaHD' => $pay->MaHD,
+                'MaSP' => $product['id'],
+                'SoLuong' => $quantities[$key],
+                'DonGia' => $product['price'],
+                'TongTien' => $totalPrices[$key]
+            ]);
+            $chiTietHoaDon->save();
+        }
+
+        // Chuyển hướng hoặc trả về view tùy thuộc vào logic ứng dụng của bạn
+        return view('users.cart.index')->with('message', 'Tạo thành công !');
     }
 
     /**
@@ -66,7 +106,7 @@ class HoaDonControllers extends Controller
 
         return view('users.pay.index', [
             'info' => $info, 'products' => $products,
-            'customer' => $customer, 'pay' =>$pay
+            'customer' => $customer, 'pay' => $pay
         ]);
     }
 

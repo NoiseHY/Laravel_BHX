@@ -8,10 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class HoaDon extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
     protected $primaryKey = "MaKH";
 
     protected $table = "HoaDon" ;
 
-    protected $fillable = [];
+    protected $fillable = [
+        'MaHD' ,
+        'NgayBan' ,
+        'MaKH' ,
+        'TongTien' ,
+        'TrangThai'];
+
 }
