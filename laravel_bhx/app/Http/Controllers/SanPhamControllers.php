@@ -74,11 +74,11 @@ class SanPhamControllers extends Controller
          
         $products = SanPham::create($input);
 
-        $chiTietSanPham = new ChiTietSanPham();
+        $info = new ChiTietSanPham();
 
-        $chiTietSanPham->MaSP = $products->MaSP;
+        $info->MaSP = $products->MaSP;
 
-        $chiTietSanPham->save();
+        $info->save();
 
         return redirect('products/create')->with('message', 'Thêm thành công');
     }

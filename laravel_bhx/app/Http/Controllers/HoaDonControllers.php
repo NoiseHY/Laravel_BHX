@@ -38,49 +38,60 @@ class HoaDonControllers extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
 
+        // dd($request);
+
         $input = $request->all();
-
         $money = $request->input('total-price');
-
-        // dd($money, $input);
 
         $customer = KhachHang::find(session('user_id'));
         $customerId = $customer->MaKH;
 
         $input['MaKH'] = $customerId;
-
-
         $input['TrangThai'] = 1;
         $input['NgayBan'] = now();
         $input['TongTien'] = $money;
 
         $pay = HoaDon::create($input);
 
-        $products = $request->input('product');
+        // dd($pay->MaKH); //primary key
 
-        // dd($products);
+        // $info = new ChiTietHoaDon();
 
-        $quantities = $request->input('quantities');
-        $totalPrices = $request->input('totalPrices');
+        // $info->MaHD = $pay->MaHD;
 
-        // Lặp qua từng sản phẩm và tạo chi tiết hóa đơn cho mỗi sản phẩm
-        foreach ($products as $key => $product) {
-            $chiTietHoaDon = new ChiTietHoaDon([
-                'MaHD' => $pay->MaHD,
-                'MaSP' => $product['id'],
-                'SoLuong' => $quantities[$key],
-                'DonGia' => $product['price'],
-                'TongTien' => $totalPrices[$key]
+        // $info->save();
+
+        // Lặp qua mảng "products"
+
+        $productsArray = json_decode($request->input('products')[0], true);
+
+        // Lặp qua các sản phẩm trong mảng
+        foreach ($productsArray as $product) {
+            $productId = $product['productID'];
+            $quantity = $product['quantity'];
+            $price = $product['price'];
+            $totalPrice = $product['totalPrice'];
+
+            // Tạo một instance mới của ChiTietHoaDon và lưu nó
+            $info = new ChiTietHoaDon([
+                'MaHD' => $pay->MaKH,
+                'MaSP' => $productId,
+                'SoLuong' => $quantity,
+                'DonGia' => $price,
+                'ThanhTien' => $totalPrice
             ]);
-            $chiTietHoaDon->save();
+
+            $info->save();
         }
 
-        // Chuyển hướng hoặc trả về view tùy thuộc vào logic ứng dụng của bạn
-        return view('users.cart.index')->with('message', 'Tạo thành công !');
+
+        return redirect()->back()->with('message', 'Đã tạo thành công hóa đơn, vui lòng kiểm tra !');
     }
+
 
     /**
      * Display the specified resource.
