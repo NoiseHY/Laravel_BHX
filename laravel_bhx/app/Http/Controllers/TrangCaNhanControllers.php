@@ -6,12 +6,22 @@ use Illuminate\Http\Request;
 
 use App\Models\NguoiDung;
 use App\Models\KhachHang;
+use App\Models\HoaDon;
 
 class TrangCaNhanControllers extends Controller
 {
   public function index()
   {
-    return view('users.profile.index');
+
+    $id = session('user_id');
+    
+    $user = NguoiDung::find($id);
+
+    $customer = KhachHang::find($id);
+
+    $pay = HoaDon::find($customer->MaKH)->all();
+
+    return view("users.profile.index", ['user' => $user, 'pay' => $pay]);
   }
 
   /**
@@ -25,14 +35,13 @@ class TrangCaNhanControllers extends Controller
     //
     // $user = Nguoidung::where('TenDangNhap', $TenDangNhap)->first();
 
-    $user = NguoiDung::find($id);
+    // $user = NguoiDung::find($id);
 
+    // $customer = KhachHang::find($id);
 
-    if ($user) {
-      return view("users.profile.index", ['user' => $user]);
-    } else {
-      return "Không tìm thấy người dùng với tên "  . $id;
-    }
+    // $pay = HoaDon::find($customer->MaKH)->paginate(10);
+
+    // return view("users.profile.index", ['user' => $user, 'pay' => $pay]);
   }
 
   /**
@@ -54,5 +63,4 @@ class TrangCaNhanControllers extends Controller
 
     return redirect("profile/" . $user->MaNguoiDung)->with("message", "Cập nhật thành công");
   }
-  
 }

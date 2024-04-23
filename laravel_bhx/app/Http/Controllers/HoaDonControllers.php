@@ -153,5 +153,7 @@ class HoaDonControllers extends Controller
     public function destroy($id)
     {
         //
+        HoaDon::where('MaHD', $id)->delete();
+        return redirect()->back()->with('message', 'Xóa thành công hóa đơn!');
     }
 }

@@ -38,6 +38,54 @@
 
   </form>
 </div>
+</br >
+
+<div class="container">
+  <h2>Hóa đơn</h2>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>TT</th>
+            <th>Tổng tiền</th>
+            <th>TTrạng thái</th>
+            <th>Chi tiết</th>
+            <th>Sửa</th>
+            <th>Xóa</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($pay as $pay)
+          <tr>
+            <td>{{ $loop->iteration }}</td>
+            <td>{{$pay->TongTien}}</td>
+
+            <td>
+              <input type="checkbox" {{ $pay->TrangThai == 1 ? 'checked' : '' }}>
+            </td>
+
+            <td>
+              <a href="{{url('/pay/' .$pay->MaHD)}}" class="btn btn-primary">Chi tiết</a>
+            </td>
+            <td><a href="{{url('/pay/' .$pay->MaHD .'/edit')}}" class="btn btn-warning">Sửa</a></td>
+            <td>
+              <form method="POST" action="{{url('/pay'.'/'.$pay->MaHD)}}">
+                {{method_field('DELETE')}}
+                {{csrf_field()}}
+                <button onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-primary">Xóa</button>
+
+              </form>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</br>
 
 
 @endsection
