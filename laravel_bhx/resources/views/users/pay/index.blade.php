@@ -36,6 +36,7 @@
                 <span>Tổng thành tiền</span>
                 <strong>{{$pay->TongTien}}</strong>
             </li>
+
         </ul>
 
 

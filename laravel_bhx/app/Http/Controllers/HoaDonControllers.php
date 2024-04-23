@@ -51,7 +51,7 @@ class HoaDonControllers extends Controller
         $customerId = $customer->MaKH;
 
         $input['MaKH'] = $customerId;
-        $input['TrangThai'] = 1;
+        $input['TrangThai'] = 0;
         $input['NgayBan'] = now();
         $input['TongTien'] = $money;
 
@@ -101,7 +101,7 @@ class HoaDonControllers extends Controller
      */
     public function show($id)
     {
-        $pay = HoaDon::find($id);
+        $pay = HoaDon::where('MaHD',$id)->first();
 
         $info = ChiTietHoaDon::where('MaHD', $id)->get();
 

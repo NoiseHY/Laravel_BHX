@@ -77,7 +77,7 @@
                                 <i class="fas fa-user fa-lg"></i>   
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                                <li><a href="{{ url('/profile/' . session('user_id')) }}" class="dropdown-item">Trang cá nhân</a></li>
+                                <li><a href="{{ url('/profile/' ) }}" class="dropdown-item">Trang cá nhân</a></li>
                                 <li><a href="#" class="dropdown-item">Cài đặt</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
