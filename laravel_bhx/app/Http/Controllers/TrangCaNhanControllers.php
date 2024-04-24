@@ -61,6 +61,6 @@ class TrangCaNhanControllers extends Controller
     $input = $request->all();
     $user->update($input);
 
-    return redirect("profile/" . $user->MaNguoiDung)->with("message", "Cập nhật thành công");
+    return redirect("profile" )->with("message", "Cập nhật thành công");
   }
 }

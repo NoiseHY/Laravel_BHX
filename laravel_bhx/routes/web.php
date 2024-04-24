@@ -9,6 +9,7 @@ use App\Http\Controllers\TrangChuControllers;
 use App\Http\Controllers\LoginControllers;
 use App\Http\Controllers\TrangCaNhanControllers;
 use App\Http\Controllers\LoaiSanPhamControllers;
+use App\Http\Controllers\HoaDonControllers_users;
 use App\Http\Controllers\HoaDonControllers;
 
 
@@ -74,5 +75,8 @@ Route::resource("/details", ChiTietSanPhamControllers_Users::class);
 
 Route::resource('/info', ChiTietSanPhamControllers::class);
 
-Route::resource('/pay', HoaDonControllers::class);
+Route::resource('/pay', HoaDonControllers_users::class);
+Route::post('/ok/{id}', [HoaDonControllers::class, 'ok'])->name('ok');
 
+
+Route::resource('/adminPay', HoaDonControllers::class);

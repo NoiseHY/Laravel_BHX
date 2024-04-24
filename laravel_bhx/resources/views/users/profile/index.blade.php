@@ -49,9 +49,8 @@
           <tr>
             <th>TT</th>
             <th>Tổng tiền</th>
-            <th>TTrạng thái</th>
+            <th>Trạng thái</th>
             <th>Chi tiết</th>
-            <th>Sửa</th>
             <th>Xóa</th>
           </tr>
         </thead>
@@ -68,12 +67,11 @@
             <td>
               <a href="{{url('/pay/' .$pay->MaHD)}}" class="btn btn-primary">Chi tiết</a>
             </td>
-            <td><a href="{{url('/pay/' .$pay->MaHD .'/edit')}}" class="btn btn-warning">Sửa</a></td>
             <td>
               <form method="POST" action="{{url('/pay'.'/'.$pay->MaHD)}}">
                 {{method_field('DELETE')}}
                 {{csrf_field()}}
-                <button onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-primary">Xóa</button>
+                <button onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-warning">Xóa</button>
 
               </form>
             </td>

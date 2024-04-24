@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\SanPham;
 use App\Models\Giohang;
 use App\Models\ChiTietGioHang;
+use App\Models\ThongBao;
+
 
 class TrangChuControllers extends Controller
 {
@@ -18,13 +20,22 @@ class TrangChuControllers extends Controller
     public function index()
     {
         //
+        $id = session('user_id');
+
         $number = ChiTietGioHang::count();
 
         $products = SanPham::paginate(9);
+        
+        $noti = ThongBao::where('MaNguoiDung', $id)->get();
+        
+        
+
+        // dd($noti);
 
         return view("users.index", [
             'products' => $products,
             'number' => $number,
+            'noti' => $noti
         ]);
     }
 

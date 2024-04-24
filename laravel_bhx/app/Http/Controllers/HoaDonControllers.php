@@ -4,156 +4,45 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\ChiTietHoaDon;
 use App\Models\HoaDon;
-use App\Models\SanPham;
-use App\Models\KhachHang;
+use App\Models\ChiTietHoaDon;
+use App\Models\ThongBao;
 
 class HoaDonControllers extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('users.pay.index');
-    }
+  public function index()
+  {
+    $pay = HoaDon::all();
+    return view('admin.pay.index', ['pay' => $pay]);
+  }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-        return view('users.pay.index');
-    }
+  public function show($id)
+  {
+    $details = ChiTietHoaDon::find($id);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
-    public function store(Request $request)
-    {
-
-        // dd($request);
-
-        $input = $request->all();
-        $money = $request->input('total-price');
-
-        $customer = KhachHang::find(session('user_id'));
-        $customerId = $customer->MaKH;
-
-        $input['MaKH'] = $customerId;
-        $input['TrangThai'] = 0;
-        $input['NgayBan'] = now();
-        $input['TongTien'] = $money;
-
-        $pay = HoaDon::create($input);
-
-        // dd($pay->MaKH); //primary key
-
-        // $info = new ChiTietHoaDon();
-
-        // $info->MaHD = $pay->MaHD;
-
-        // $info->save();
-
-        // Lặp qua mảng "products"
-
-        $productsArray = json_decode($request->input('products')[0], true);
-
-        // Lặp qua các sản phẩm trong mảng
-        foreach ($productsArray as $product) {
-            $productId = $product['productID'];
-            $quantity = $product['quantity'];
-            $price = $product['price'];
-            $totalPrice = $product['totalPrice'];
-
-            // Tạo một instance mới của ChiTietHoaDon và lưu nó
-            $info = new ChiTietHoaDon([
-                'MaHD' => $pay->MaKH,
-                'MaSP' => $productId,
-                'SoLuong' => $quantity,
-                'DonGia' => $price,
-                'ThanhTien' => $totalPrice
-            ]);
-
-            $info->save();
-        }
+    $pay = HoaDon::where('MaHD', $id)->first();
 
 
-        return redirect()->back()->with('message', 'Đã tạo thành công hóa đơn, vui lòng kiểm tra !');
-    }
+    return view('admin.pay.info', ['details' => $details, 'pay' => $pay]);
+  }
 
+  public function ok($id)
+  {
+    $tt = 1;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $pay = HoaDon::where('MaHD',$id)->first();
+    $pay = HoaDon::where('MaHD', $id);
 
-        $info = ChiTietHoaDon::where('MaHD', $id)->get();
+    // dd($pay);
 
-        $products = [];
-        foreach ($info as $detail) {
-            $product = SanPham::find($detail->MaSP);
-            if ($product) {
-                $products[] = $product;
-            }
-        }
+    $pay->update(['TrangThai' => $tt]);
 
-        $customer = KhachHang::find(session('user_id'));
+    $note = "Đã xác minh đơn hàng thành công !";
 
-        return view('users.pay.index', [
-            'info' => $info, 'products' => $products,
-            'customer' => $customer, 'pay' => $pay
-        ]);
-    }
+    $noti = ThongBao::create([
+      'NoiDung' => $note,
+      'MaNguoiDung' => session('user_id'),
+    ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-        HoaDon::where('MaHD', $id)->delete();
-        return redirect()->back()->with('message', 'Xóa thành công hóa đơn!');
-    }
+    return redirect()->back()->with('message', 'Đã xác nhận thành công !');
+  }
 }

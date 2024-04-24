@@ -37,6 +37,8 @@ class SanPhamControllers extends Controller
         //
         $category = LoaiSanPham::all();
 
+        
+
         return view("admin.products.create")->with('category', $category);
     }
 
@@ -150,6 +152,8 @@ class SanPhamControllers extends Controller
         //          Storage::disk('public')->delete('uploads/' . $product->getOriginal('TenSP') . '/' . $product->getOriginal('HinhAnh'));
         //      }
         //  }
+
+
  
          $product->save();
  

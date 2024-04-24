@@ -62,47 +62,71 @@
                 </button>
 
                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
-                    <div class="navbar-nav mx-auto">
-                        <a href="{{url('/home')}}" class="nav-item nav-link active">Trang chủ</a>
-                        <a href="{{url('/category')}}" class="nav-item nav-link">Danh mục</a>
-                        <a href="#" class="nav-item nav-link">Giúp đỡ</a>
 
-                    </div>
+                    <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                        <nav class="navbar-nav mx-auto">
+                            <a href="{{ url('/home') }}" class="nav-item nav-link active">Trang chủ</a>
+                            <a href="{{ url('/category') }}" class="nav-item nav-link">Danh mục</a>
+                            <a href="#" class="nav-item nav-link">Giúp đỡ</a>
+                        </nav>
 
-                    <div class="d-flex align-items-center">
-                        <button class="btn btn-light me-3 rounded-pill" data-bs-toggle="modal" data-bs-target="#searchModal">
-                            <i class="fas fa-search text-primary"></i>
-                        </button>
-                        <a href="{{url('/cart/' .session('user_id'))}}" class="position-relative me-4 my-auto">
-                            <i class="fas fa-shopping-bag fa-lg"></i> <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">{{$number -1}}</span>
-                        </a>
-
-                        <div class="dropdown">
-                            <button class="btn btn-light dropdown-toggle me-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user fa-lg"></i>
+                        <div class="d-flex align-items-center">
+                            @if(session('user_id'))
+                            <button class="btn btn-light me-3 rounded-pill" data-bs-toggle="modal" data-bs-target="#searchModal">
+                                <i class="fas fa-search text-primary"></i>
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                                @if(session('user_id'))
-                                <li><a href="{{url('profile') }}" class="dropdown-item">Tài khoản</a></li>
-                                <li><a href="{{url('/customer/' .session('user_id'))}}" class="dropdown-item">Người dùng</a></li>
-                                <li>
+                            <a href="{{ url('/cart/' . session('user_id')) }}" class="position-relative me-4 my-auto">
+                                <i class="fas fa-shopping-bag fa-lg"></i>
+                                <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">{{$number -1}}</span>
+                            </a>
+
+                            <div class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-bell"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li class="text-center"><h5>Đã đọc</h5></li>
+                                    @foreach($noti as $notification)
+                                    @if($notification->TrangThai == 1)
+                                    <li><a class="dropdown-item">{{$notification->NoiDung}}</a></li>
+                                    @endif
+                                    @endforeach
                                     <hr class="dropdown-divider">
-                                </li>
-                                <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item">Thoát</button>
-                                </form>
-                                @else
-                                <li><a href="{{ url('/login') }}" class="dropdown-item">Đăng nhập</a></li>
-                                @endif
+                                    <li class="text-center " ><h5>Chưa đọc</h5></li>
+                                    @foreach($noti as $notification)
+                                    @if($notification->TrangThai != 1)
+                                    <li><a class="dropdown-item unread">{{$notification->NoiDung}}</a></li>
+                                    @endif
+                                    @endforeach
+                                </ul>
 
-                            </ul>
+                            </div>
+
+                            <div class=" d-flex align-items-center">
+                                <div class="dropdown">
+                                    <a href="#" class="dropdown-toggle d-flex align-items-center text-dark" data-bs-toggle="dropdown">
+                                        <i class="fas fa-user fa-lg"></i> </a>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a href="{{ url('profile') }}" class="dropdown-item">Tài khoản</a></li>
+                                        <li><a href="{{ url('/customer/' . session('user_id')) }}" class="dropdown-item">Người dùng</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item">Thoát</button>
+                                        </form>
+                                    </ul>
+                                </div>
+                            </div>
+                            @else
+                            <a href="{{ url('/login') }}" class="dropdown-item">Đăng nhập</a>
+                            @endif
+
                         </div>
-
                     </div>
-
-
                 </div>
+
             </nav>
         </div>
     </div>
