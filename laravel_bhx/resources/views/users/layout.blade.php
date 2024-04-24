@@ -85,14 +85,18 @@
                                     <i class="fas fa-bell"></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    <li class="text-center"><h5>Đã đọc</h5></li>
+                                    <li class="text-center">
+                                        <h5>Đã đọc</h5>
+                                    </li>
                                     @foreach($noti as $notification)
                                     @if($notification->TrangThai == 1)
                                     <li><a class="dropdown-item">{{$notification->NoiDung}}</a></li>
                                     @endif
                                     @endforeach
                                     <hr class="dropdown-divider">
-                                    <li class="text-center " ><h5>Chưa đọc</h5></li>
+                                    <li class="text-center ">
+                                        <h5>Chưa đọc</h5>
+                                    </li>
                                     @foreach($noti as $notification)
                                     @if($notification->TrangThai != 1)
                                     <li><a class="dropdown-item unread">{{$notification->NoiDung}}</a></li>

@@ -2,37 +2,41 @@
 
 @section('content')
 
-<h1>Danh sách sản phẩm</h1>
+<h1>Danh sách loại sản phẩm</h1>
 <div class="card-body">
   <div class="table-responsive">
-    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-      <thead>
-        <tr>
-          <th>TT</th>
-          <th>Tên sản phẩm</th>
-          <th>Đơn giá</th>
-          <th>Chi tiết</th>
-          <th>Sửa</th>
-          <th>Xóa</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach($categories as $category)
-        <tr>
-          <td>{{ $loop->iteration }}</td>
-          <td>{{$category->TenLoai}}</td>
-          <td>{{$category->MoTa}}</td>
-          <td>
-            <a href="{{url('/categories/' .$category->MaLoai)}}" class="btn btn-primary">Chi tiết</a>
-          </td>
+  <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+  <thead>
+    <tr>
+      <th scope="col">#</th> <th scope="col">Tên loại sản phẩm</th>
+      <th scope="col">Mô tả ngắn gọn</th> <th scope="col">Chi tiết</th>
+      <th scope="col">Sửa</th>
+      <th scope="col">Xóa</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach($categories as $category)
+      <tr>
+        <td>{{ $loop->iteration }}</td>
+        <td>{{$category->TenLoai}}</td>
+        <td>{{ Str::limit($category->MoTa, 50) }}</td> <td>
+          <a href="{{ route('categories.show', $category->MaLoai) }}" class="btn btn-primary">Chi tiết</a>
+        </td>
+        <td>
+          <a href="{{ route('categories.edit', $category->MaLoai) }}" class="btn btn-warning">Sửa</a>
+        </td>
+        <td>
+          <form action="{{ route('categories.destroy', $category->MaLoai) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Xóa</button>
+          </form>
+        </td>
+      </tr>
+    @endforeach
+  </tbody>
+</table>
 
-          <td><a href="{{url('/categories/' .$category->MaLoai .'/edit')}}" class="btn btn-warning">Sửa</a></td>
-
-
-        </tr>
-        @endforeach
-      </tbody>
-    </table>
   </div>
 </div>
 

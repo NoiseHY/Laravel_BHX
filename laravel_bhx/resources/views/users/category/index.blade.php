@@ -4,6 +4,9 @@
 
 <div class="row">
   <h1>{{$category_name->TenLoai}}</h1>
+  <p>{!! $category_name->MoTa!!}</p>
+  <div class="sidebar-footer border-top d-none d-md-flex">
+  </div>
   </br>
   @foreach($products as $product)
 
@@ -16,7 +19,7 @@
         <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
         <div class="p-4 border border-secondary border-top-0 rounded-bottom">
           <h4 class="text-truncate">{{ $product->TenSP }}</h4>
-          <p>{{ Str::limit($product->MoTa, 100) }}</p>
+          <p>{!! Str::limit(strip_tags($product->MoTa), 100) !!}</p>
           <div class="d-flex justify-content-between flex-lg-wrap">
             <p class="text-dark fs-5 fw-bold mb-0">{{ $product->DonGia }} đ</p>
             <form method="POST" action="{{ url('/cart/' . session('user_id') . '/' . $product->MaSP) }}">

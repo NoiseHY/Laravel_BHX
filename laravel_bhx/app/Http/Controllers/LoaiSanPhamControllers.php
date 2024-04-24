@@ -55,6 +55,7 @@ class LoaiSanPhamControllers extends Controller
 
   public function update(Request $request, $id)
   {
+
     $categories = LoaiSanPham::find($id);
 
     $input = $request->all();
@@ -63,6 +64,19 @@ class LoaiSanPhamControllers extends Controller
 
     $categories->save();
 
-    return redirect()->with('message', 'Cập nhật thành công !');
+    return redirect()->back()->with('message', 'Cập nhật thành công !');
+  }
+  public function create()
+  {
+    return view("admin.categories.create");
+  }
+  public function store(Request $request)
+  {
+
+    $input = $request->all();
+
+    LoaiSanPham::create($input);
+
+    return redirect()->back()->with("message", "Thêm thành công!");
   }
 }

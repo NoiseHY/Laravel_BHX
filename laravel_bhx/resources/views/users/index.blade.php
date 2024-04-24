@@ -39,11 +39,11 @@
 
     <!-- Liên kết đến các trang -->
     @for ($i = 1; $i <= $products->lastPage(); $i++)
-        <a href="{{ $products->url($i) }}" class="{{ $products->currentPage() == $i ? 'active' : '' }} rounded">{{ $i }}</a>
-    @endfor
+      <a href="{{ $products->url($i) }}" class="{{ $products->currentPage() == $i ? 'active' : '' }} rounded">{{ $i }}</a>
+      @endfor
 
-    <!-- Liên kết trang cuối cùng -->
-    <a href="{{ $products->url($products->lastPage()) }}" class="rounded">&raquo;</a>
+      <!-- Liên kết trang cuối cùng -->
+      <a href="{{ $products->url($products->lastPage()) }}" class="rounded">&raquo;</a>
   </div>
 </div>
 

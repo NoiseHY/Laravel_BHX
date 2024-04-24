@@ -1,8 +1,7 @@
 <!-- Include the Quill library -->
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.js"></script>
 
-@extends("admin.categories.layout")
-
+@extends('admin.categories.layout')
 @section('content')
 
 @if (\Session::has('message'))
@@ -12,25 +11,22 @@
 @endif
 
 <div class="container">
-  <h2>Cập nhật sản phẩm {{$categories->TenLoai}}</h2>
-  <form action="{{url('categories/' .$categories->MaLoai)}}" method="post">
+  <h2>Thêm loại sản phẩm</h2>
+  <form action="{{url('categories')}}" method="post">
 
     {!! csrf_field() !!}
-    @method("PATCH")
     <div class="form-group">
-      <label for="exampleInputName">Tên thể loại</label>
-      <input type="text" class="form-control" id="TenLoai" name="TenLoai" value="{{$categories->TenLoai}}">
+      <label for="exampleInputName">Loại sản phẩm</label>
+      <input type="text" class="form-control" id="TenLoai" name="TenLoai">
     </div></br>
 
     <div class="form-group" id="editor">
-      <div id="quill-editor" style="height: 200px;">{!! $categories->MoTa !!}</div>
-      <input type="hidden" id="MoTa" name="MoTa">
+      <div id="quill-editor" style="height: 200px;"></div>
+      <input type="text" id="MoTa" name="MoTa" style="display: none;">
     </div>
 
-
     <br>
-
-    <button type="submit" value="Save" class="btn btn-primary">Sửa</button>
+    <button type="submit" value="Save" class="btn btn-primary">Submit</button>
   </form>
 </div>
 

@@ -9,7 +9,16 @@ class LoaiSanPham extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
+
     protected $primaryKey = 'MaLoai';
 
     protected $table = 'LoaiSanPham';
+
+    protected $fillable = ['MaLoai' ,
+    'TenLoai' ,
+    'MoTa' ];
+
+        
 }

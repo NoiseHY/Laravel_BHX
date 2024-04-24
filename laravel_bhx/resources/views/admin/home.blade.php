@@ -96,7 +96,7 @@
           </svg> Loại sản phẩm</a>
         <ul class="nav-group-items compact">
           <li class="nav-item"><a class="nav-link" href="{{route('categories.index')}}"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Danh sách loại sản phẩm</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{route('products.create')}}"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Thêm loại sản phẩm</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{route('categories.create')}}"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Thêm loại sản phẩm</a></li>
         </ul>
       </li>
 
@@ -200,7 +200,7 @@
             </div>
           </li>
         </ul>
-        
+
       </div>
       <div class="container-fluid px-4">
         <nav aria-label="breadcrumb">
@@ -328,7 +328,7 @@
           </div>
           <!-- /.col-->
         </div>
-        
+
       </div>
     </div>
 

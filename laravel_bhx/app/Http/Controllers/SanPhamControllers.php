@@ -22,6 +22,8 @@ class SanPhamControllers extends Controller
         //
         $products = SanPham::all();
 
+        // dd($products);
+
         $category = LoaiSanPham::all();
         
         return view("admin.products.index", ['products' => $products, 'category' => $category]);
@@ -171,6 +173,6 @@ class SanPhamControllers extends Controller
     {
         //
         SanPham::find($id)->delete();
-        return redirect("products")->with("success", "ok");
+        return redirect()->back()->with("message", "Xóa thành công !");
     }
 }
