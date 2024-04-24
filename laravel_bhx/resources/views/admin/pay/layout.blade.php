@@ -15,9 +15,9 @@
   <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
   <meta name="author" content="Łukasz Holeczek">
   <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-  <title>Admin - Sản phẩm</title>
+  <title>Admin - Người dùng</title>
   <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicon/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="/assets/favicon/apple-icon-72x72.png">
   <link rel="apple-touch-icon" sizes="76x76" href="/assets/favicon/apple-icon-76x76.png">
   <link rel="apple-touch-icon" sizes="114x114" href="/assets/favicon/apple-icon-114x114.png">
@@ -45,9 +45,6 @@
   <script src="/js/config.js"></script>
   <script src="/js/color-modes.js"></script>
   <link href="/vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
-
-  <!-- thư viện  -->
-  
 </head>
 
 <body>
@@ -93,13 +90,31 @@
         </ul>
       </li>
 
+      <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+          <svg class="nav-icon">
+            <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+          </svg> Loại sản phẩm</a>
+        <ul class="nav-group-items compact">
+          <li class="nav-item"><a class="nav-link" href="{{route('categories.index')}}"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Danh sách loại sản phẩm</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{route('products.create')}}"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Thêm loại sản phẩm</a></li>
+        </ul>
+      </li>
 
+      <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+          <svg class="nav-icon">
+            <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+          </svg> Hóa đơn</a>
+        <ul class="nav-group-items compact">
+          <li class="nav-item"><a class="nav-link" href="{{url('/adminPay')}}"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Danh sách hóa đơn</a></li>
+        </ul>
+      </li>
 
 
       <div class="sidebar-footer border-top d-none d-md-flex">
         <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
       </div>
     </ul>
+
     <div class="sidebar-footer border-top d-none d-md-flex">
       <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
     </div>
@@ -211,18 +226,15 @@
           </li>
         </ul>
       </div>
-
+     
     </header>
 
     <!-- body flex-grow-1 -->
-
     <div class="container">
       @yield('content')
     </div>
 
     <!-- end body flex-grow-1 -->
-
-
 
   </div>
   <!-- CoreUI and necessary plugins-->
@@ -242,14 +254,7 @@
   <script src="/vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
   <script src="/vendors/@coreui/utils/js/index.js"></script>
   <script src="/js/main.js"></script>
-
-  <!-- jQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
   <script>
-
-    
   </script>
 
 </body>

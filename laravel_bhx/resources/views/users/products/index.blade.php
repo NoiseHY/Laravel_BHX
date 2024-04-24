@@ -31,7 +31,7 @@
               <i class="fa fa-star text-secondary"></i>
               <i class="fa fa-star"></i>
             </div>
-            <p class="mb-4">{{$products->MoTa}}</p>
+            <p class="mb-4">{!! $products->MoTa !!}</p>
             <!-- <p class="mb-4">Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish</p> -->
 
             @php
@@ -403,7 +403,7 @@
           <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
           <div class="p-4 pb-0 rounded-bottom">
             <h4>{{$cat->TenSP}}</h4>
-            <p>{{$cat->MoTa}}</p>
+            <p>{!! Str::limit(strip_tags($cat->MoTa), 50) !!}</p>
             <div class="d-flex justify-content-between flex-lg-wrap">
               <p class="text-dark fs-5 fw-bold">{{$cat->DonGia}}</p>
               <a href="#" class="btn border border-secondary rounded-pill px-3 py-1 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>

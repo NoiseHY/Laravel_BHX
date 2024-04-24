@@ -15,40 +15,41 @@
   @method("PATCH")
   <div class="form-group">
     <label for="exampleInputName">Thương hiệu</label>
-    <input type="text" class="form-control" id="TenSP" name="ThuongHieu" value="{{$info->ThuongHieu}}">
+    <input type="text" class="form-control"  name="ThuongHieu" value="{{$info->ThuongHieu}}">
   </div>
 
   <div class="form-group">
     <label for="exampleInputEmail">Khối lượng</label>
-    <input type="numbers" class="form-control" id="DonGia" name="KhoiLuong" value="{{$info->KhoiLuong}}">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword">Thành phần</label>
-    <input type="text" class="form-control" id="SoLuong" name="ThanhPhan" value="{{$info->ThanhPhan}}">
+    <input type="numbers" class="form-control"  name="KhoiLuong" value="{{$info->KhoiLuong}}">
   </div>
 
 
   <div class="form-group">
     <label for="exampleInputPassword">Sản xuất tại</label>
-    <input type="text" class="form-control" id="SoLuong" name="SanXuatTai" value="{{$info->SanXuatTai}}">
+    <input type="text" class="form-control"  name="SanXuatTai" value="{{$info->SanXuatTai}}">
   </div>
   <br>
 
 
   <div class="form-group">
     <label for="exampleInputPassword">Hạn sử dụng</label>
-    <input type="text" class="form-control" id="SoLuong" name="HanSuDung" value="{{$info->HanSuDung}}">
+    <input type="text" class="form-control"  name="HanSuDung" value="{{$info->HanSuDung}}">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputPassword">Thành phần</label>
+    <textarea style="height: 150px;" type="text" class="form-control"  name="ThanhPhan" value="{{$info->ThanhPhan}}"></textarea>
   </div>
 
   <div class="form-group">
     <label for="exampleInputPassword">Bảo quản</label>
-    <textarea class="form-control" id="MoTa" style="height: 150px;" name="BaoQuan">{{$info->BaoQuan}}</textarea>
+    <textarea class="form-control"  style="height: 150px;" name="BaoQuan">{{$info->BaoQuan}}</textarea>
   </div>
 
 
   <div class="form-group">
     <label for="exampleInputPassword">Hướng dẫn sử dụng</label>
-    <textarea class="form-control" id="MoTa" style="height: 150px;" name="HuongDanSuDung">{{$info->HuongDanSuDung}}</textarea>
+    <textarea class="form-control"  style="height: 150px;" name="HuongDanSuDung">{{$info->HuongDanSuDung}}</textarea>
   </div>
   </br>
   <div class="row">

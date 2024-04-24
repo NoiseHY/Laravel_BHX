@@ -1,3 +1,6 @@
+<!-- Include the Quill library -->
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.js"></script>
+
 @extends('admin.products.layout')
 @section('content')
 <div class="container">
@@ -24,21 +27,20 @@
     <div class="form-group">
       <label for="exampleInputPassword">Số lượng</label>
       <input type="number" class="form-control" id="SoLuong" name="SoLuong" placeholder="Số lượng">
-    </div>
+    </div></br>
 
-    <div class="form-group">
-      <label for="exampleTextarea">Mô tả</label>
-      <textarea class="form-control" id="MoTa" name="MoTa" rows="3" placeholder="Mô tả"></textarea>
+    <div class="form-group" id="editor">
+      <div id="quill-editor" style="height: 200px;"></div>
+      <input type="text" id="MoTa" name="MoTa" style="display: none;">
     </div>
     </br>
-
 
     <select class="form-select" aria-label="Chọn thể loại" name="MaLoai">
       <option value="">Tất cả thể loại</option>
       @foreach($category as $category)
       <option id="MaLoai" value="{{$category->MaLoai}}">{{$category->TenLoai}}</option>
       @endforeach
-    </select>
+    </select></br>
 
     <div class="form-group">
       <label for="exampleInputImage">Hình ảnh</label>
@@ -55,4 +57,21 @@
     <button type="submit" value="Save" class="btn btn-primary">Submit</button>
   </form>
 </div>
+
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.snow.css" rel="stylesheet" />
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Quill editor
+    const quill = new Quill('#quill-editor', {
+      theme: 'snow'
+    });
+
+    // Lấy nội dung editor khi form submit và gán vào input text
+    document.querySelector('form').addEventListener('submit', function() {
+      const quillInput = document.getElementById('MoTa');
+      quillInput.value = quill.root.innerHTML;
+    });
+  });
+</script>
 @endsection

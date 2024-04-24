@@ -50,6 +50,7 @@ class SanPhamControllers extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
             'HinhAnh' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);

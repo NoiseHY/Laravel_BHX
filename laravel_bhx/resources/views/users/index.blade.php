@@ -14,7 +14,7 @@
         <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
         <div class="p-4 border border-secondary border-top-0 rounded-bottom">
           <h4 class="text-truncate">{{ $product->TenSP }}</h4>
-          <p>{{ Str::limit($product->MoTa, 100) }}</p>
+          <p>{!! Str::limit(strip_tags($product->MoTa), 100) !!}</p>
           <div class="d-flex justify-content-between flex-lg-wrap">
             <p class="text-dark fs-5 fw-bold mb-0">{{ $product->DonGia }} đ</p>
             <form method="POST" action="{{ url('/cart/' . session('user_id') . '/' . $product->MaSP .'/'. 1) }}">
@@ -32,19 +32,6 @@
 </div>
 
 
-
-<!-- <div class="col-12">
-  <div class="pagination d-flex justify-content-center mt-5">
-    <a href="#" class="rounded">&laquo;</a>
-    <a href="#" class="active rounded">1</a>
-    <a href="#" class="rounded">2</a>
-    <a href="#" class="rounded">3</a>
-    <a href="#" class="rounded">4</a>
-    <a href="#" class="rounded">5</a>
-    <a href="#" class="rounded">6</a>
-    <a href="#" class="rounded">&raquo;</a>
-  </div>
-</div> -->
 <div class="col-12">
   <div class="pagination d-flex justify-content-center mt-5">
     <!-- Liên kết trang đầu tiên -->
