@@ -75,6 +75,8 @@ class ChiTietSanPhamControllers extends Controller
     public function update(Request $request, $id)
     {
 
+        // dd($request);
+
         $info = ChiTietSanPham::findOrFail($id);
 
         $products = SanPham::find($id);

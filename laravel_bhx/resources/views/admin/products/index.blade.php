@@ -16,21 +16,21 @@
         </tr>
       </thead>
       <tbody>
-        @foreach($products as $products)
+        @foreach($products as $product)
         <tr>
           <td>{{ $loop->iteration }}</td>
-          <td>{{$products->TenSP}}</td>
-          <td>{{$products->DonGia}}</td>
-          <td>{{$products->SoLuong}}</td>
+          <td>{{$product->TenSP}}</td>
+          <td>{{$product->DonGia}}</td>
+          <td>{{$product->SoLuong}}</td>
 
           <td>
-            <a href="{{url('/products/' .$products->MaSP)}}" class="btn btn-primary">Chi tiết</a>
+            <a href="{{url('/products/' .$product->MaSP)}}" class="btn btn-primary">Chi tiết</a>
           </td>
 
-          <td><a href="{{url('/products/' .$products->MaSP .'/edit')}}" class="btn btn-warning">Sửa</a></td>
+          <td><a href="{{url('/products/' .$product->MaSP .'/edit')}}" class="btn btn-warning">Sửa</a></td>
 
           <td>
-            <form method="POST" action="{{url('/products'.'/'.$products->MaSP)}}">
+            <form method="POST" action="{{url('/products'.'/'.$product->MaSP)}}">
               {{method_field('DELETE')}}
               {{csrf_field()}}
               <button onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-primary">Xóa</button>
@@ -40,8 +40,29 @@
 
         </tr>
         @endforeach
+
       </tbody>
     </table>
+
+    <div class="col-12">
+      <div class="pagination justify-content-center mt-5">
+        <li class="page-item {{ $products->currentPage() == 1 ? 'disabled' : '' }}">
+          <a href="{{ $products->url(1) }}" class="page-link rounded">&laquo;</a>
+        </li>
+
+        @for ($i = 1; $i <= $products->lastPage(); $i++)
+          <li class="page-item {{ $products->currentPage() == $i ? 'active' : '' }}">
+            <a href="{{ $products->url($i) }}" class="page-link rounded">{{ $i }}</a>
+          </li>
+          @endfor
+
+          <li class="page-item {{ $products->currentPage() == $products->lastPage() ? 'disabled' : '' }}">
+            <a href="{{ $products->url($products->lastPage()) }}" class="page-link rounded">&raquo;</a>
+          </li>
+      </div>
+    </div>
+
+    </br>
 
   </div>
 </div>

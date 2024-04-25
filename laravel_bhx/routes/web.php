@@ -66,6 +66,8 @@ Route::resource("/profile", TrangCaNhanControllers::class);
 Route::resource('/customer', KhachHangControllers::class);
 
 Route::resource('/category', LoaiSanPhamControllers_users::class);
+Route::get('/fil/{id}/{name}/{cat_id}', [LoaiSanPhamControllers_users::class, 'fil'])->name('fil');
+
 Route::resource('/categories', LoaiSanPhamControllers::class);
 
 Route::resource("/cart", GioHangControllers::class);

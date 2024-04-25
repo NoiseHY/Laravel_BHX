@@ -235,7 +235,7 @@
     </div>
 
     <!-- end body flex-grow-1 -->
-
+    
   </div>
   <!-- CoreUI and necessary plugins-->
   <script src="/vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\LoaiSanPham;
 use App\Models\ChiTietGioHang;
+use App\Models\ChiTietSanPham;
 use App\Models\SanPham;
 
 class LoaiSanPhamControllers_users extends Controller
@@ -34,6 +35,37 @@ class LoaiSanPhamControllers_users extends Controller
             'category_name' => $category_name
         ]);
     }
+
+    public function fil(int $id, string $name, int $cat_id)
+    {
+        // Đếm số lượng sản phẩm trong giỏ hàng
+        $number = ChiTietGioHang::count();
+
+        // Lấy tên của thể loại sản phẩm dựa trên mã thể loại
+        $category_name = LoaiSanPham::find($cat_id);
+
+        // Lấy tất cả các thể loại sản phẩm
+        $category = LoaiSanPham::find($cat_id)->get();
+
+        // dd($cat_id);
+
+        // Lọc sản phẩm theo mã thể loại
+        $products = SanPham::where('MaLoai', $cat_id)->get();
+
+        // Lọc thông tin chi tiết sản phẩm theo mã sản phẩm và đơn vị
+        $info = ChiTietSanPham::where('DonVi', 'like', '%' . $name . '%')
+            ->get();
+
+        // Trả về view với dữ liệu đã lọc
+        return view('users.category.index', [
+            'products' => $products,
+            'category_name' => $category_name,
+            'number' => $number,
+            'category' => $category,
+            'info' => $info
+        ]);
+    }
+
 
     /**
      * Show the form for creating a new resource.

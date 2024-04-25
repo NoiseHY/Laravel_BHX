@@ -20,12 +20,12 @@ class SanPhamControllers extends Controller
     public function index()
     {
         //
-        $products = SanPham::all();
+        $products = SanPham::paginate(10);
 
         // dd($products);
 
         $category = LoaiSanPham::all();
-        
+
         return view("admin.products.index", ['products' => $products, 'category' => $category]);
     }
 
@@ -39,7 +39,7 @@ class SanPhamControllers extends Controller
         //
         $category = LoaiSanPham::all();
 
-        
+
 
         return view("admin.products.create")->with('category', $category);
     }
@@ -72,11 +72,11 @@ class SanPhamControllers extends Controller
             $request->HinhAnh->move($tenSPFolder, $imageName);
         }
 
-        
+
         $input = $request->all();
         $input['HinhAnh'] = $imageName;
         $input['MaLoai'] = $request->MaLoai;
-         
+
         $products = SanPham::create($input);
 
         $info = new ChiTietSanPham();
@@ -102,9 +102,13 @@ class SanPhamControllers extends Controller
         //
         $products = SanPham::find($id);
         $products_info = ChiTietSanPham::find($id);
-        $category = LoaiSanPham::all();
+        $category = LoaiSanPham::where('MaLoai', $products->MaLoai)->first();
 
-        return view("admin.products.show", ['products' => $products, 'products_info' => $products_info]);
+        return view("admin.products.show", [
+            'products' => $products,
+            'products_info' => $products_info,
+            'category' => $category
+        ]);
     }
 
     /**
@@ -127,29 +131,29 @@ class SanPhamControllers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
-     public function update(Request $request, $id)
-     {
-         $product = SanPham::findOrFail($id);
- 
-         $validatedData = $request->validate([
-             'TenSP' => 'required|string|max:255',
-             'DonGia' => 'required|numeric',
-             'SoLuong' => 'required|integer',
-             'MoTa' => 'required|string',
+
+    public function update(Request $request, $id)
+    {
+        $product = SanPham::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'TenSP' => 'required|string|max:255',
+            'DonGia' => 'required|numeric',
+            'SoLuong' => 'required|integer',
+            'MoTa' => 'required|string',
             //  'HinhAnh' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file size limit as needed
-         ]);
- 
-         $product->update($validatedData);
- 
+        ]);
+
+        $product->update($validatedData);
+
         //  // Handle image upload if provided
         //  if ($request->hasFile('HinhAnh')) {
         //      $fileName = time() . '.' . $request->HinhAnh->getClientOriginalExtension();
         //      $product->HinhAnh = $fileName; // Update product image attribute
- 
+
         //      // Store the uploaded image in the 'uploads' disk (replace with your storage configuration)
         //      $request->HinhAnh->storeAs('uploads/' . $product->TenSP, $fileName, 'public');
- 
+
         //      // Optionally delete the old image if it exists and a new one was uploaded
         //      if ($product->wasOriginallyChanged('HinhAnh')) {
         //          Storage::disk('public')->delete('uploads/' . $product->getOriginal('TenSP') . '/' . $product->getOriginal('HinhAnh'));
@@ -157,11 +161,11 @@ class SanPhamControllers extends Controller
         //  }
 
 
- 
-         $product->save();
- 
-         return redirect()->route('products.index')->with('message', 'Cập nhật thành công!');
-     }
+
+        $product->save();
+
+        return redirect()->route('products.index')->with('message', 'Cập nhật thành công!');
+    }
 
     /**
      * Remove the specified resource from storage.

@@ -23,7 +23,8 @@ class ChiTietSanPham extends Model
         'HanSuDung' ,
         'BaoQuan' ,
         'SanXuatTai',
-        'HinhAnh'
+        'HinhAnh',
+        'DonVi'
     ];
         
 }

@@ -22,7 +22,6 @@
 
           <div class="col-lg-6">
             <h4 class="fw-bold mb-3">{{$products->TenSP}}</h4>
-            <p class="mb-3">Category: Vegetables</p>
             <h5 class="fw-bold mb-3">{{$products->DonGia}} đ</h5>
             <div class="d-flex mb-4">
               <i class="fa fa-star text-secondary"></i>
@@ -146,13 +145,20 @@
                           <p class="mb-0">{{$info->KhoiLuong}}</p>
                         </div>
                       </div>
-
+                      <div class="row text-center align-items-center justify-content-center py-2">
+                        <div class="col-6">
+                          <p class="mb-0">Đơn vị</p>
+                        </div>
+                        <div class="col-6">
+                          <p class="mb-0">{{$info->DonVi}}</p>
+                        </div>
+                      </div>
                       <div class="row text-center align-items-center justify-content-center py-2">
                         <div class="col-6">
                           <p class="mb-0">Thành phần</p>
                         </div>
                         <div class="col-6">
-                          <p class="mb-0">{{$info->ThanhPhan}}</p>
+                          <p class="mb-0">{!! $info->ThanhPhan !!}</p>
                         </div>
                       </div>
 
@@ -161,7 +167,7 @@
                           <p class="mb-0">Hướng dẫn sử dụng </p>
                         </div>
                         <div class="col-6">
-                          <p class="mb-0">{{$info->HuongDanSuDung}}</p>
+                          <p class="mb-0">{!! $info->HuongDanSuDung!!}</p>
                         </div>
                       </div>
 

@@ -1,3 +1,6 @@
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.js"></script>
+
+
 @extends('admin.products.layout')
 
 @section('content')
@@ -14,42 +17,46 @@
   {!! csrf_field() !!}
   @method("PATCH")
   <div class="form-group">
-    <label for="exampleInputName">Thương hiệu</label>
-    <input type="text" class="form-control"  name="ThuongHieu" value="{{$info->ThuongHieu}}">
+    <label>Thương hiệu</label>
+    <input type="text" class="form-control" name="ThuongHieu" value="{{$info->ThuongHieu}}">
   </div>
 
   <div class="form-group">
-    <label for="exampleInputEmail">Khối lượng</label>
-    <input type="numbers" class="form-control"  name="KhoiLuong" value="{{$info->KhoiLuong}}">
+    <label>Khối lượng</label>
+    <input type="numbers" class="form-control" name="KhoiLuong" value="{{$info->KhoiLuong}}">
   </div>
 
+  <div class="form-group">
+    <label>Đơn vị</label>
+    <input type="numbers" class="form-control" name="DonVi" value="{{$info->DonVi}}">
+  </div>
 
   <div class="form-group">
-    <label for="exampleInputPassword">Sản xuất tại</label>
-    <input type="text" class="form-control"  name="SanXuatTai" value="{{$info->SanXuatTai}}">
+    <label>Sản xuất tại</label>
+    <input type="text" class="form-control" name="SanXuatTai" value="{{$info->SanXuatTai}}">
   </div>
   <br>
 
 
   <div class="form-group">
-    <label for="exampleInputPassword">Hạn sử dụng</label>
-    <input type="text" class="form-control"  name="HanSuDung" value="{{$info->HanSuDung}}">
+    <label>Hạn sử dụng</label>
+    <input type="text" class="form-control" name="HanSuDung" value="{{$info->HanSuDung}}">
   </div>
 
   <div class="form-group">
-    <label for="exampleInputPassword">Thành phần</label>
-    <textarea style="height: 150px;" type="text" class="form-control"  name="ThanhPhan" value="{{$info->ThanhPhan}}"></textarea>
+    <label>Thành phần</label>
+    <textarea style="height: 150px;" type="text" class="form-control" name="ThanhPhan" value="">{{$info->ThanhPhan}}</textarea>
   </div>
 
   <div class="form-group">
-    <label for="exampleInputPassword">Bảo quản</label>
-    <textarea class="form-control"  style="height: 150px;" name="BaoQuan">{{$info->BaoQuan}}</textarea>
-  </div>
-
-
-  <div class="form-group">
-    <label for="exampleInputPassword">Hướng dẫn sử dụng</label>
-    <textarea class="form-control"  style="height: 150px;" name="HuongDanSuDung">{{$info->HuongDanSuDung}}</textarea>
+    <label>Bảo quản</label>
+    <textarea class="form-control" style="height: 150px;" name="BaoQuan">{{$info->BaoQuan}}</textarea>
+  </div></br>
+ 
+  <label >Hướng dẫn sử dụng</label>
+  <div class="form-group" id="editor">
+    <div id="quill-editor" style="height: 200px;">{!! $info->HuongDanSuDung !!}</div>
+    <input type="hidden" id="HuongDanSuDung" name="HuongDanSuDung">
   </div>
   </br>
   <div class="row">
@@ -86,5 +93,23 @@
 </form>
 </br>
 </div>
+
+
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.snow.css" rel="stylesheet" />
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Quill editor
+    const quill = new Quill('#quill-editor', {
+      theme: 'snow'
+    });
+
+    // Lấy nội dung editor khi form submit và gán vào input text
+    document.querySelector('form').addEventListener('submit', function() {
+      const quillInput = document.getElementById('HuongDanSuDung');
+      quillInput.value = quill.root.innerHTML;
+    });
+  });
+</script>
 
 @endsection

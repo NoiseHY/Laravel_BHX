@@ -60,7 +60,7 @@
                 <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars text-primary"></span>
                 </button>
-                
+
                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                     <div class="navbar-nav mx-auto">
                         <a href="{{url('/home')}}" class="nav-item nav-link">Trang chủ</a>
@@ -76,7 +76,7 @@
                         <a href="{{url('/cart/' .session('user_id'))}}" class="position-relative me-4 my-auto">
                             <i class="fas fa-shopping-bag fa-lg"></i> <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">{{$number -1}}</span>
                         </a>
-                        
+
                         <div class="dropdown">
                             <button class="btn btn-light dropdown-toggle me-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-user fa-lg"></i>
@@ -148,26 +148,30 @@
                             </div>
                             @endif
                         </div>
+
                         <div class="col-xl-3">
                             <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
-                                <label for="fruits">Default Sorting:</label>
-                                <select id="fruits" name="fruitlist" class="border-0 form-select-sm bg-light me-3" form="fruitform">
-                                    <option value="volvo">Nothing</option>
-                                    <option value="saab">Popularity</option>
-                                    <option value="opel">Organic</option>
-                                    <option value="audi">Fantastic</option>
+                                <label for="fruits">Sắp xếp theo :</label>
+                                <select id="fruits" name="fruitlist" class="border-0 form-select-sm bg-light me-3" form="fruitform" onchange="handleChange(this)">
+                                    <option value="{{ url('/category/') }}">Nothing</option>
+                                    <option value="{{ route('fil', ['id' => $product->MaSP, 'name' => 'KG   ', 'cat_id' => $product->MaLoai]) }}">Kilogam</option>
+                                    <option value="audi">Gam</option>
+                                    <option value="audi">Lốc sữa</option>
+                                    <option value="audi">Thùng</option>
                                 </select>
                             </div>
                         </div>
+
+
                     </div>
-                    
+
                     <div class="row g-4">
                         <div class="col-lg-3">
                             <div class="row g-4">
                                 <div class="col-lg-12">
                                     <div class="mb-3">
                                         <h4>Thể loại</h4>
-                                        
+
                                         @foreach($category as $category)
                                         <ul class="list-unstyled fruite-categorie">
                                             <li>
@@ -175,7 +179,7 @@
                                                     <a href="{{url('/category/'.$category->MaLoai)}}"><i class="fas fa-apple-alt me-2"></i>{{$category-> TenLoai}}</a>
                                                 </div>
                                             </li>
-                                            
+
                                         </ul>
                                         @endforeach
                                     </div>
@@ -342,6 +346,14 @@
 
             <!-- Template Javascript -->
             <script src="/users_tmp/js/main.js"></script>
+            <script>
+                function handleChange(select) {
+                    var selectedValue = select.value;
+                    if (selectedValue !== '') {
+                        window.location.href = selectedValue; // Điều hướng tới URL được chọn
+                    }
+                }
+            </script>
 </body>
 
 </html>

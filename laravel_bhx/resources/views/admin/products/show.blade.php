@@ -6,7 +6,7 @@
     <ul class="list-group">
       <li class="list-group-item">Mã sản phẩm : {{$products->MaSP}}</li>
       <li class="list-group-item">Tên sản phẩm : {{$products->TenSP}}</li>
-      <li class="list-group-item">Tên loại : </li>
+      <li class="list-group-item">Tên loại : {{$category->TenLoai}}</li>
       <li class="list-group-item">Đơn giá : {{$products->DonGia}}</li>
       <li class="list-group-item">Số lượng : {{$products->SoLuong}}</li>
       <li class="list-group-item">Mô tả : {{$products->MoTa}}</li>
@@ -35,6 +35,7 @@
 
       <li class="list-group-item">Thương hiệu : {{$products_info->ThuongHieu}}</li>
       <li class="list-group-item">Khối lượng : {{$products_info->KhoiLuong}}</li>
+      <li class="list-group-item">Đơn vị : {{$products_info->DonVi}}</li>
       <li class="list-group-item">Thành phẩn : {{$products_info->ThanhPhan}}</li>
       <li class="list-group-item">Hướng dẫn sử dùng : {{$products_info->HuongDanSuDung}}</li>
       <li class="list-group-item">Hạn sử dụng : {{$products_info->HanSuDung}}</li>

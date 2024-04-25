@@ -16,13 +16,12 @@
         <div class="fruite-img">
           <img src="{{ asset('uploads/' . $product->TenSP . '/' . $product->HinhAnh) }}" class="img-fluid w-100 rounded-top" alt="Hình ảnh sản phẩm">
         </div>
-        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
         <div class="p-4 border border-secondary border-top-0 rounded-bottom">
           <h4 class="text-truncate">{{ $product->TenSP }}</h4>
           <p>{!! Str::limit(strip_tags($product->MoTa), 100) !!}</p>
           <div class="d-flex justify-content-between flex-lg-wrap">
             <p class="text-dark fs-5 fw-bold mb-0">{{ $product->DonGia }} đ</p>
-            <form method="POST" action="{{ url('/cart/' . session('user_id') . '/' . $product->MaSP) }}">
+            <form id="cartForm" method="POST" action="{{ url('/cart/' . session('user_id') . '/' . $product->MaSP . '/' . 1) }}">
               @csrf
               <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Thêm vào giỏ</button>
             </form>
