@@ -96,7 +96,7 @@ class HoaDonControllers_users extends Controller
             'MaNguoiDung' => session('user_id'),
         ]);
 
-        return redirect()->back()->with('message', 'Đã tạo thành công hóa đơn, vui lòng kiểm tra !');
+        return redirect('pay/' .$pay->MaKH);
     }
 
 

@@ -84,6 +84,7 @@
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fas fa-bell"></i>
                                 </a>
+                                
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li class="text-center">
                                         <h5>Đã đọc</h5>

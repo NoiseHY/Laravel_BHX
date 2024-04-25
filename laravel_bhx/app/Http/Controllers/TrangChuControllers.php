@@ -9,6 +9,7 @@ use App\Models\Giohang;
 use App\Models\ChiTietGioHang;
 use App\Models\ThongBao;
 
+use Carbon\Carbon;
 
 class TrangChuControllers extends Controller
 {
@@ -19,16 +20,19 @@ class TrangChuControllers extends Controller
      */
     public function index()
     {
-        //
+        $today = Carbon::today()->toDateString();
+
         $id = session('user_id');
 
         $number = ChiTietGioHang::count();
 
         $products = SanPham::paginate(9);
-        
-        $noti = ThongBao::where('MaNguoiDung', $id)->get();
-        
-        
+
+        $noti = ThongBao::where('MaNguoiDung', $id)->whereDate('ThoiGian', $today)
+            ->orderByDesc('ThoiGian') // Sắp xếp theo thời gian giảm dần
+            ->get();
+
+
 
         // dd($noti);
 
