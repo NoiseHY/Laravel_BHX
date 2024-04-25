@@ -110,7 +110,9 @@ class HoaDonControllers_users extends Controller
     {
         $pay = HoaDon::where('MaHD', $id)->first();
 
-        $info = ChiTietHoaDon::where('MaHD', $id)->get();
+        $info = ChiTietHoaDon::where('MaHD',$id)->get();
+
+        // dd($info);
 
         $products = [];
         foreach ($info as $detail) {

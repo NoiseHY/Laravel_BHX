@@ -153,8 +153,8 @@
                             <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
                                 <label for="fruits">Sắp xếp theo :</label>
                                 <select id="fruits" name="fruitlist" class="border-0 form-select-sm bg-light me-3" form="fruitform" onchange="handleChange(this)">
-                                    <option value="{{ url('/category/') }}">Nothing</option>
-                                    <option value="{{ route('fil', ['id' => $product->MaSP, 'name' => 'KG   ', 'cat_id' => $product->MaLoai]) }}">Kilogam</option>
+                                    <option value="">Nothing</option>
+                                    <option value="">Kilogam</option>
                                     <option value="audi">Gam</option>
                                     <option value="audi">Lốc sữa</option>
                                     <option value="audi">Thùng</option>

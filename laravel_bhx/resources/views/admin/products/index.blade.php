@@ -33,7 +33,7 @@
             <form method="POST" action="{{url('/products'.'/'.$product->MaSP)}}">
               {{method_field('DELETE')}}
               {{csrf_field()}}
-              <button onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-primary">Xóa</button>
+              <button onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-danger">Xóa</button>
 
             </form>
           </td>
