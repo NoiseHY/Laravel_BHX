@@ -18,9 +18,12 @@ class HoaDonControllers extends Controller
 
   public function show($id)
   {
-    $details = ChiTietHoaDon::find($id);
 
     $pay = HoaDon::where('MaHD', $id)->first();
+
+    $details = ChiTietHoaDon::where('MaHD', $id)->get();
+
+    // dd($details);
 
 
     return view('admin.pay.info', ['details' => $details, 'pay' => $pay]);

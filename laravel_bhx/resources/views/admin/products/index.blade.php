@@ -6,7 +6,7 @@
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
       <thead>
         <tr>
-          <th>TT</th>
+          <th>#</th>
           <th>Tên sản phẩm</th>
           <th>Đơn giá</th>
           <th>Số lượng</th>

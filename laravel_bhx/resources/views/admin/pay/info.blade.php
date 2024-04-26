@@ -22,14 +22,16 @@
 
 </br>
 
-<h2>Chi tiết hóa đơn {{$details->MaChiTietSP}}</h2>
+<h2>Chi tiết hóa đơn {{$pay->MaHD}}</h2>
 <ul class="list-group">
-  <li class="list-group-item">Mã chi tiết hóa đơn : {{$details->MaHD}}</li>
+  @foreach($details as $details)
   <li class="list-group-item">Mã sản phẩm : {{$details->MaSP}}</li>
   <li class="list-group-item">Số lượng : {{$details->SoLuong}}</li>
   <li class="list-group-item">Đơn giá : {{$details->DonGia}}</li>
   <li class="list-group-item">Thành tiền : {{$details->ThanhTien}}</li>
-
+  <div class="sidebar-footer border-top d-none d-md-flex">
+  </div></br>
+  @endforeach
 
 </ul>
 

@@ -84,7 +84,7 @@
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fas fa-bell"></i>
                                 </a>
-                                
+
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li class="text-center">
                                         <h5>Đã đọc</h5>
@@ -100,7 +100,9 @@
                                     </li>
                                     @foreach($noti as $notification)
                                     @if($notification->TrangThai != 1)
-                                    <li><a class="dropdown-item unread">{{$notification->NoiDung}}</a></li>
+                                    <li><a class="dropdown-item unread" href="#">
+                                            <i class="fas fa-plus-circle me-2"></i> {{$notification->NoiDung}}
+                                        </a></li>
                                     @endif
                                     @endforeach
                                 </ul>

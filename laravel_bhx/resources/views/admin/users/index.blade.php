@@ -6,7 +6,7 @@
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
       <thead>
         <tr>
-          <th>TT</th>
+          <th>#</th>
           <th>Tên đăng nhập</th>
           <th>Họ và tên</th>
           <th>Vai trò</th>
@@ -44,7 +44,7 @@
             <form method="POST" action="{{url('/users'.'/'.$users->MaNguoiDung)}}">
               {{method_field('DELETE')}}
               {{csrf_field()}}
-              <button onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-primary">Xóa</button>
+              <button onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-danger">Xóa</button>
 
             </form>
           </td>

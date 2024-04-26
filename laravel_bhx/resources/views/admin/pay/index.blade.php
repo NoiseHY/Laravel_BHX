@@ -16,7 +16,7 @@
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
-            <th>TT</th>
+            <th>#</th>
             <th>Tổng tiền</th>
             <th>Trạng thái</th>
             <th>Chi tiết</th>
@@ -52,7 +52,7 @@
               <form method="POST" action="{{url('/pay'.'/'.$pay->MaHD)}}">
                 {{method_field('DELETE')}}
                 {{csrf_field()}}
-                <button onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-primary">Xóa</button>
+                <button onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-danger">Xóa</button>
 
               </form>
             </td>
