@@ -24,19 +24,19 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($pay as $pay)
+          @foreach($pay as $pays)
           <tr>
             <td>{{ $loop->iteration }}</td>
-            <td>{{$pay->TongTien}}</td>
+            <td>{{$pays->TongTien}}</td>
 
             <td>
-              @if($pay->TrangThai == 0)
-              <form method="POST" action="{{ url('/ok/' .$pay->MaHD) }}">
+              @if($pays->TrangThai == 0)
+              <form method="POST" action="{{ url('/ok/' .$pays->MaHD) }}">
                 @csrf
                 <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Xác nhận</button>
               </form>
               @else
-              <input type="checkbox" @if($pay->TrangThai == 1)
+              <input type="checkbox" @if($pays->TrangThai == 1)
               checked
 
               @else
@@ -46,10 +46,10 @@
             </td>
 
             <td>
-              <a href="{{url('/adminPay/' .$pay->MaHD)}}" class="btn btn-primary">Chi tiết</a>
+              <a href="{{url('/adminpays/' .$pays->MaHD)}}" class="btn btn-primary">Chi tiết</a>
             </td>
             <td>
-              <form method="POST" action="{{url('/pay'.'/'.$pay->MaHD)}}">
+              <form method="POST" action="{{url('/pays'.'/'.$pays->MaHD)}}">
                 {{method_field('DELETE')}}
                 {{csrf_field()}}
                 <button onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-danger">Xóa</button>
@@ -60,6 +60,24 @@
           @endforeach
         </tbody>
       </table>
+
+      <div class="col-12">
+        <div class="pagination justify-content-center mt-5">
+          <li class="page-item {{ $pay->currentPage() == 1 ? 'disabled' : '' }}">
+            <a href="{{ $pay->url(1) }}" class="page-link rounded">&laquo;</a>
+          </li>
+
+          @for ($i = 1; $i <= $pay->lastPage(); $i++)
+            <li class="page-item {{ $pay->currentPage() == $i ? 'active' : '' }}">
+              <a href="{{ $pay->url($i) }}" class="page-link rounded">{{ $i }}</a>
+            </li>
+            @endfor
+
+            <li class="page-item {{ $pay->currentPage() == $pay->lastPage() ? 'disabled' : '' }}">
+              <a href="{{ $pay->url($pay->lastPage()) }}" class="page-link rounded">&raquo;</a>
+            </li>
+        </div>
+      </div>
     </div>
   </div>
 </div>

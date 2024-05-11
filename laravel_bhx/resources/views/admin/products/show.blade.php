@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
   <form>
-    <h2>Chi tiết sản phẩm {{$products->TenSP}}</h2>
+    <h2>Chi tiết sản phẩm <span style="color: red;">{{$products->TenSP}}</span></h2>
     <ul class="list-group">
       <li class="list-group-item">Mã sản phẩm : {{$products->MaSP}}</li>
       <li class="list-group-item">Tên sản phẩm : {{$products->TenSP}}</li>
@@ -10,6 +10,9 @@
       <li class="list-group-item">Đơn giá : {{$products->DonGia}}</li>
       <li class="list-group-item">Số lượng : {{$products->SoLuong}}</li>
       <li class="list-group-item">Mô tả : {{$products->MoTa}}</li>
+      <li class="list-group-item">Ngày tạo: {{$products->created_at}}</li>
+      <li class="list-group-item">Ngày sửa : {{$products->updated_at}}</li>
+
       <li class="list-group-item">
         <div class="row">
           <div class="col-2">
@@ -26,7 +29,7 @@
     </br>
 
     <div class="product-details d-flex justify-content-between align-items-center">
-      <h2>Thông tin Chi Tiết sản phẩm {{$products->TenSP}}</h2>
+      <h2>Thông tin chi tiết sản phẩm <span style="color: red;">{{$products->TenSP}}</span></h2>
       <a href="{{url('/info/'.$products->MaSP)}}" type="button" class="btn btn-warning">Sửa</a>
     </div>
 
@@ -55,7 +58,7 @@
             @else
             <!-- Hiển thị một thông báo hoặc hình ảnh mặc định nếu không có hình ảnh -->
             <p>Không có hình ảnh</p>
-            @endif 
+            @endif
 
           </div>
         </div>

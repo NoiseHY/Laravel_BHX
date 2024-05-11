@@ -12,7 +12,7 @@ class HoaDonControllers extends Controller
 {
   public function index()
   {
-    $pay = HoaDon::all();
+    $pay = HoaDon::paginate(10);
     return view('admin.pay.index', ['pay' => $pay]);
   }
 

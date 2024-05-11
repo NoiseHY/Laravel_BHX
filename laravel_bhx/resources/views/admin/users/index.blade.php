@@ -1,6 +1,11 @@
 @extends('admin.users.layout')
 @section('content')
 <h1>Danh sách người dùng</h1>
+@if (\Session::has('message'))
+<div class="alert alert-success">
+  {{ \Session::get('message') }}
+</div>
+@endif
 <div class="card-body">
   <div class="table-responsive">
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -17,15 +22,15 @@
         </tr>
       </thead>
       <tbody>
-        @foreach($users as $users)
+        @foreach($users as $user)
         <tr>
           <td>{{ $loop->iteration }}</td>
-          <td>{{$users->TenDangNhap}}</td>
-          <td>{{$users->HoTen}}</td>
+          <td>{{$user->TenDangNhap}}</td>
+          <td>{{$user->HoTen}}</td>
           <td>
-            @if($users->VaiTro == 1)
+            @if($user->VaiTro == 1)
             Admin
-            @elseif($users->VaiTro == 2)
+            @elseif($user->VaiTro == 2)
             Khách hàng
             @else
             Vai trò không xác định
@@ -33,15 +38,15 @@
           </td>
 
           <td>
-            <input type="checkbox" {{ $users->TrangThai == 1 ? 'checked' : '' }}>
+            <input type="checkbox" {{ $user->TrangThai == 1 ? 'checked' : '' }}>
           </td>
 
           <td>
-            <a href="{{url('/users/' .$users->MaNguoiDung)}}" class="btn btn-primary">Chi tiết</a>
+            <a href="{{url('/users/' .$user->MaNguoiDung)}}" class="btn btn-primary">Chi tiết</a>
           </td>
-          <td><a href="{{url('/users/' .$users->MaNguoiDung .'/edit')}}" class="btn btn-warning">Sửa</a></td>
+          <td><a href="{{url('/users/' .$user->MaNguoiDung .'/edit')}}" class="btn btn-warning">Sửa</a></td>
           <td>
-            <form method="POST" action="{{url('/users'.'/'.$users->MaNguoiDung)}}">
+            <form method="POST" action="{{url('/user'.'/'.$user->MaNguoiDung)}}">
               {{method_field('DELETE')}}
               {{csrf_field()}}
               <button onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-danger">Xóa</button>
@@ -52,6 +57,25 @@
         @endforeach
       </tbody>
     </table>
+
+    <div class="col-12">
+      <div class="pagination justify-content-center mt-5">
+        <li class="page-item {{ $users->currentPage() == 1 ? 'disabled' : '' }}">
+          <a href="{{ $users->url(1) }}" class="page-link rounded">&laquo;</a>
+        </li>
+
+        @for ($i = 1; $i <= $users->lastPage(); $i++)
+          <li class="page-item {{ $users->currentPage() == $i ? 'active' : '' }}">
+            <a href="{{ $users->url($i) }}" class="page-link rounded">{{ $i }}</a>
+          </li>
+          @endfor
+
+          <li class="page-item {{ $users->currentPage() == $users->lastPage() ? 'disabled' : '' }}">
+            <a href="{{ $users->url($users->lastPage()) }}" class="page-link rounded">&raquo;</a>
+          </li>
+      </div>
+    </div>
+
   </div>
 </div>
 

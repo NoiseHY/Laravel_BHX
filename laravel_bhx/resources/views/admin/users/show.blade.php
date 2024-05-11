@@ -2,7 +2,14 @@
 @section('content')
 <div class="container">
   <form>
-    <h2>Chi tiết người dùng {{$users->HoTen}}</h2>
+    @if (\Session::has('message'))
+    <div class="alert alert-success">
+      {{ \Session::get('message') }}
+    </div>
+    @endif
+
+    <h2>Chi tiết người dùng <span style="color: red;">{{$users->HoTen}}</span></h2>
+
     <ul class="list-group">
       <li class="list-group-item">Mã người dùng : {{$users->MaNguoiDung}}</li>
       <li class="list-group-item">Tên đăng nhập : {{$users->TenDangNhap}}</li>
@@ -27,6 +34,9 @@
         Trạng thái không xác định
         @endif
       </li>
+      <li class="list-group-item">Ngày tạo : {{$users->created_at}}</li>
+      <li class="list-group-item">Ngày sửa : {{$users->updated_at}}</li>
+
     </ul>
   </form>
 </div>

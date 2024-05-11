@@ -17,7 +17,7 @@ class LoaiSanPhamControllers extends Controller
   public function index()
   {
     //
-    $categories = LoaiSanPham::all();
+    $categories = LoaiSanPham::paginate(10);
 
     return view('admin.categories.index', ['categories' => $categories]);
   }

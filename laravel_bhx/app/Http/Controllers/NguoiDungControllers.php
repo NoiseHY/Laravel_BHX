@@ -15,7 +15,7 @@ class NguoiDungControllers extends Controller
     public function index()
     {
         //
-        $users = Nguoidung::all();
+        $users = Nguoidung::paginate(10);
         return view("admin.users.index")->with("users", $users);
     }
 
@@ -38,15 +38,28 @@ class NguoiDungControllers extends Controller
      */
     public function store(Request $request)
     {
-        
+
+        $request->validate([
+            'TenDangNhap' => 'required',
+            'MatKhau' => 'required',
+            'HoTen' => 'required',
+            'Email' => 'required',
+        ], [
+            'TenDangNhap.required' => 'Vui lòng nhập trường tên đăng nhập',
+            'MatKhau.required' => 'Vui lòng nhập trường mật khẩu',
+            'HoTen.required' => 'Vui lòng nhập trường họ và tên',
+            'Email.required' => 'Vui lòng nhập trường email',
+
+        ]);
+
         $input = $request->all();
-      
+
         $input['VaiTro'] = 2;
         $input['TrangThai'] = 1;
 
         Nguoidung::create($input);
 
-        return redirect("users")->with("success", "Thêm người dùng thành công!");
+        return redirect('/users')->with("message", "Thêm người dùng thành công!");
     }
 
 
@@ -85,11 +98,22 @@ class NguoiDungControllers extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'TenDangNhap' => 'required',
+            'MatKhau' => 'required',
+            'HoTen' => 'required',
+            'Email' => 'required',
+        ], [
+            'TenDangNhap.required' => 'Vui lòng nhập trường tên đăng nhập',
+            'MatKhau.required' => 'Vui lòng nhập trường mật khẩu',
+            'HoTen.required' => 'Vui lòng nhập trường họ và tên',
+            'Email.required' => 'Vui lòng nhập trường email',
+
+        ]);
         $users = Nguoidung::find($id);
         $input = $request->all();
         $users->update($input);
-        return redirect("users")->with("success","Cập nhật thành công");
+        return redirect('/users')->with("message", "Cập nhật thành công");
     }
 
     /**
@@ -102,6 +126,6 @@ class NguoiDungControllers extends Controller
     {
         //
         Nguoidung::find($id)->delete();
-        return redirect("users")->with("success","Xóa thành công !");
+        return redirect('/users')->with("message", "Xóa thành công !");
     }
 }

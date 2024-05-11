@@ -1,7 +1,16 @@
 @extends('admin.products.layout')
 @section('content')
 <div class="container">
-  <h2>Cập nhật sản phẩm {{$products->TenSP}}</h2>
+  @if ($errors->any())
+  <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+      <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+  @endif
+  <h2>Cập nhật sản phẩm <span style="color: red;">{{$products->TenSP}}</span></h2>
   <form action="{{url('products/' .$products->MaSP)}}" method="post">
 
     {!! csrf_field() !!}
@@ -26,6 +35,19 @@
     </div>
     <br>
 
+    <div class="form-group">
+      <label for="exampleInputPassword">Thể loại </label>
+      <input class="form-control" name="MaLoai" value="{{$products->MaLoai}}" id="MaLoai"></input>
+    </div>
+    <br>
+
+    <select class="form-select" aria-label="Chọn thể loại" id="selectLoai" onchange="updateMaLoai()">
+      <option value="">Tất cả thể loại</option>
+      @foreach($category as $cat)
+      <option value="{{$cat->MaLoai}}">{{$cat->TenLoai}}</option>
+      @endforeach
+    </select></br>
+
     <div class="row">
       <div class="col-2">
         <span class="font-weight-bold">Hình ảnh:</span>
@@ -37,9 +59,17 @@
 
 
     <br>
-    
+
     <button type="submit" value="Save" class="btn btn-primary">Sửa</button>
   </form>
 </div>
+
+<script>
+  function updateMaLoai() {
+    var selectBox = document.getElementById("selectLoai");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    document.getElementById("MaLoai").value = selectedValue;
+  }
+</script>
 
 @endsection

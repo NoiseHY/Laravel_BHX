@@ -67,7 +67,7 @@
             </div>
             <div class="col-md-12">
                 <label for="kh_email">Email</label>
-                <input type="text" class="form-control" name="kh_email" id="kh_email" value="{{$customer->Email}}@ctu.edu.vn" readonly="">
+                <input type="text" class="form-control" name="kh_email" id="kh_email" value="{{$customer->Email}}" readonly="">
             </div>
 
         </div>

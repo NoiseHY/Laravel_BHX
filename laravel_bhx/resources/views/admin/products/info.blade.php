@@ -5,7 +5,7 @@
 
 @section('content')
 
-<h2>Cập nhật Chi tiết sản phẩm {{$products->TenSP}} </h2>
+<h2>Cập nhật thông tin chi tiết sản phẩm <span style="color: red;">{{$products->TenSP}}</span></h2>
 
 @if (\Session::has('message'))
 <div class="alert alert-success">
@@ -52,8 +52,8 @@
     <label>Bảo quản</label>
     <textarea class="form-control" style="height: 150px;" name="BaoQuan">{{$info->BaoQuan}}</textarea>
   </div></br>
- 
-  <label >Hướng dẫn sử dụng</label>
+
+  <label>Hướng dẫn sử dụng</label>
   <div class="form-group" id="editor">
     <div id="quill-editor" style="height: 200px;">{!! $info->HuongDanSuDung !!}</div>
     <input type="hidden" id="HuongDanSuDung" name="HuongDanSuDung">

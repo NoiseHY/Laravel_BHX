@@ -5,11 +5,18 @@
 @section('content')
 <div class="container">
   <h2>Thêm sản phẩm</h2>
-  @if (\Session::has('message'))
-  <div class="alert alert-success">
-    {{ \Session::get('message') }}
+
+  @if ($errors->any())
+  <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+      <li>{{ $error }}</li>
+      @endforeach
+    </ul>
   </div>
   @endif
+
+
   <form action="{{ url('products') }}" method="post" enctype="multipart/form-data">
 
     @csrf

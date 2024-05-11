@@ -1,6 +1,21 @@
 @extends('admin.users.layout')
 @section('content')
 <div class="container">
+  @if (\Session::has('message'))
+  <div class="alert alert-success">
+    {{ \Session::get('message') }}
+  </div>
+  @endif
+  @if ($errors->any())
+  <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+      <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+  @endif
+
   <h2>Thêm người dùng</h2>
   <form action="{{url('users')}}" method="post">
 
@@ -18,7 +33,7 @@
       <label for="exampleInputPassword">Họ và tên</label>
       <input type="text" class="form-control" id="HoTen" name="HoTen" placeholder="Họ và tên">
     </div>
-    
+
     <div class="form-group">
       <label for="exampleTextarea">Email</label>
       <input class="form-control" type="email" id="Email" name="Email" rows="3" placeholder="Email"></input>

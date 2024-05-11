@@ -39,7 +39,23 @@
         @endforeach
       </tbody>
     </table>
+    <div class="col-12">
+      <div class="pagination justify-content-center mt-5">
+        <li class="page-item {{ $categories->currentPage() == 1 ? 'disabled' : '' }}">
+          <a href="{{ $categories->url(1) }}" class="page-link rounded">&laquo;</a>
+        </li>
 
+        @for ($i = 1; $i <= $categories->lastPage(); $i++)
+          <li class="page-item {{ $categories->currentPage() == $i ? 'active' : '' }}">
+            <a href="{{ $categories->url($i) }}" class="page-link rounded">{{ $i }}</a>
+          </li>
+          @endfor
+
+          <li class="page-item {{ $categories->currentPage() == $categories->lastPage() ? 'disabled' : '' }}">
+            <a href="{{ $categories->url($categories->lastPage()) }}" class="page-link rounded">&raquo;</a>
+          </li>
+      </div>
+    </div>
   </div>
 </div>
 

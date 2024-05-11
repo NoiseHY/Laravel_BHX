@@ -40,7 +40,6 @@ class SanPhamControllers extends Controller
         $category = LoaiSanPham::all();
 
 
-
         return view("admin.products.create")->with('category', $category);
     }
 
@@ -53,6 +52,23 @@ class SanPhamControllers extends Controller
     public function store(Request $request)
     {
         // dd($request);
+
+        $request->validate([
+            'TenSP' => 'required',
+            'DonGia' => 'required',
+            'SoLuong' => 'required',
+            'MoTa' => 'required',
+            'MaLoai' => 'required',
+            'HinhAnh' => 'required',
+        ], [
+            'TenSP.required' => 'Vui lòng nhập trường tên sản phẩm',
+            'DonGia.required' => 'Vui lòng nhập trường đơn giá sản phẩm',
+            'SoLuong.required' => 'Vui lòng nhập trường số lượng sản phẩm',
+            'MoTa.required' => 'Vui lòng nhập trường mô tả sản phẩm',
+            'MaLoai.required' => 'Vui lòng chọn trường loại sản phẩm',
+            'HinhAnh.required' => 'Vui lòng nhập trường hình ảnh sản phẩm',
+        ]);
+
         $request->validate([
             'HinhAnh' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -85,7 +101,7 @@ class SanPhamControllers extends Controller
 
         $info->save();
 
-        return redirect('products/create')->with('message', 'Thêm thành công');
+        return redirect('/products')->with('message', 'Thêm thành công');
     }
 
 
@@ -99,7 +115,7 @@ class SanPhamControllers extends Controller
      */
     public function show($id)
     {
-        //
+
         $products = SanPham::find($id);
         $products_info = ChiTietSanPham::find($id);
         $category = LoaiSanPham::where('MaLoai', $products->MaLoai)->first();
@@ -121,7 +137,10 @@ class SanPhamControllers extends Controller
     {
         //
         $products = SanPham::find($id);
-        return view("admin.products.edit")->with("products", $products);
+
+        $category = LoaiSanPham::all();
+
+        return view("admin.products.edit", ['category' => $category, 'products' => $products    ]);
     }
 
     /**
@@ -134,17 +153,24 @@ class SanPhamControllers extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'TenSP' => 'required',
+            'DonGia' => 'required',
+            'SoLuong' => 'required',
+            'MoTa' => 'required',
+            'MaLoai' => 'required',
+        ], [
+            'TenSP.required' => 'Vui lòng nhập trường tên sản phẩm',
+            'DonGia.required' => 'Vui lòng nhập trường đơn giá sản phẩm',
+            'SoLuong.required' => 'Vui lòng nhập trường số lượng sản phẩm',
+            'MoTa.required' => 'Vui lòng nhập trường mô tả sản phẩm',
+            'MaLoai.required' => 'Vui lòng chọn trường loại sản phẩm',
+        ]);
         $product = SanPham::findOrFail($id);
 
-        $validatedData = $request->validate([
-            'TenSP' => 'required|string|max:255',
-            'DonGia' => 'required|numeric',
-            'SoLuong' => 'required|integer',
-            'MoTa' => 'required|string',
-            //  'HinhAnh' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust file size limit as needed
-        ]);
+        $input = $request->all();
 
-        $product->update($validatedData);
+        $product->update($input);
 
         //  // Handle image upload if provided
         //  if ($request->hasFile('HinhAnh')) {
@@ -164,7 +190,7 @@ class SanPhamControllers extends Controller
 
         $product->save();
 
-        return redirect()->route('products.index')->with('message', 'Cập nhật thành công!');
+        return redirect('/products')->with('message', 'Cập nhật thành công!');
     }
 
     /**
@@ -177,6 +203,6 @@ class SanPhamControllers extends Controller
     {
         //
         SanPham::find($id)->delete();
-        return redirect()->back()->with("message", "Xóa thành công !");
+        return redirect('/products')->with("message", "Xóa thành công !");
     }
 }

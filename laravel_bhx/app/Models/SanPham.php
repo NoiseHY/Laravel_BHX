@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SanPham extends Model
 {
     use HasFactory;
-    public $timestamps = false;
+    // public $timestamps = false;
 
     protected $table = 'SanPham';
     protected $primaryKey = 'MaSP';
@@ -18,6 +18,8 @@ class SanPham extends Model
     'DonGia',
     'SoLuong' ,
     'MoTa' ,
-    'HinhAnh'] ;
+    'HinhAnh',
+    'created_at',
+    'updated_at'] ;
     
 }

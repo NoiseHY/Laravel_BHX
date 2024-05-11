@@ -1,12 +1,18 @@
 @extends('admin.products.layout')
 @section('content')
 <h1>Danh sách sản phẩm</h1>
+@if (\Session::has('message'))
+<div class="alert alert-success">
+  {{ \Session::get('message') }}
+</div>
+@endif
 <div class="card-body">
   <div class="table-responsive">
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
       <thead>
         <tr>
           <th>#</th>
+          <th>Hình ảnh</th>
           <th>Tên sản phẩm</th>
           <th>Đơn giá</th>
           <th>Số lượng</th>
@@ -19,6 +25,8 @@
         @foreach($products as $product)
         <tr>
           <td>{{ $loop->iteration }}</td>
+          <td> <img src="{{ asset('uploads/' . $product->TenSP . '/' . $product->HinhAnh) }}" class="img-thumbnail" alt="Hình ảnh sản phẩm" style="max-width: 200px; max-height: 200px;">
+          </td>
           <td>{{$product->TenSP}}</td>
           <td>{{$product->DonGia}}</td>
           <td>{{$product->SoLuong}}</td>

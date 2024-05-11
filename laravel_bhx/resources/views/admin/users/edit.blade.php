@@ -1,7 +1,19 @@
 @extends('admin.users.layout')
 @section('content')
 <div class="container">
-  <h2>Cập nhật người dùng {{$users->HoTen}}</h2>
+
+  @if ($errors->any())
+  <div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+      <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+  @endif
+
+  <h2>Cập nhật chi tiết người dùng <span style="color: red;">{{$users->HoTen}}</span></h2>
+
   <form action="{{url('users/' .$users->MaNguoiDung)}}" method="post">
 
     {!! csrf_field() !!}
@@ -21,7 +33,7 @@
     </div>
     <!-- type="email" -->
     <div class="form-group">
-      <label for="exampleInputPassword">Họ và tên</label>
+      <label for="exampleInputPassword">Email</label>
       <input type="text" class="form-control" id="Email" name="Email" value="{{$users->Email}}">
     </div>
     <br>
