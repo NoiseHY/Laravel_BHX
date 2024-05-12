@@ -75,14 +75,36 @@ class ChiTietSanPhamControllers extends Controller
     public function update(Request $request, $id)
     {
 
-        // dd($request);
+        $request->validate([
+            'ThuongHieu' => 'required',
+            'KhoiLuong' => 'required',
+            'DonVi' => 'required',
+            'SanXuatTai' => 'required',
+            'HanSuDung' => 'required',
+            'ThanhPhan' => 'required',
+            'BaoQuan' => 'required',
+            'HuongDanSuDung' => 'required',
+
+        ], [
+            'ThuongHieu.required' => 'Vui lòng nhập trường thương hiệu',
+            'KhoiLuong.required' => 'Vui lòng nhập trường khối lương',
+            'DonVi.required' => 'Vui lòng nhập trường đơn vị ',
+            'SanXuatTai.required' => 'Vui lòng nhập trường sản xuất  tại',
+            'HanSuDung.required' => 'Vui lòng nhập trường hạn sử dụng',
+            'ThanhPhan.required' => 'Vui lòng nhập trường thành phần ',
+            'BaoQuan.required' => 'Vui lòng nhập trường bảo quản ',
+            'HuongDanSuDung.required' => 'Vui lòng nhập trường hướng dẫn sử dụng ',
+        ]);
 
         $info = ChiTietSanPham::findOrFail($id);
 
         $products = SanPham::find($id);
 
-        $info->update($request->all());
+        if ($request->has('HinhAnh') && $request->HinhAnh[0] === null) {
+            $request->request->remove('HinhAnh'); 
+        }
 
+        $info->update($request->all());
 
         return redirect("info/" . $info->MaSP)->with([
             "message" => "Cập nhật thành công",

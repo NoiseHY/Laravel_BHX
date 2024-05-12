@@ -5,13 +5,24 @@
 
 @section('content')
 
-<h2>Cập nhật thông tin chi tiết sản phẩm <span style="color: red;">{{$products->TenSP}}</span></h2>
 
 @if (\Session::has('message'))
 <div class="alert alert-success">
   {{ \Session::get('message') }}
 </div>
 @endif
+
+@if ($errors->any())
+<div class="alert alert-danger">
+  <ul>
+    @foreach ($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+  </ul>
+</div>
+@endif
+
+<h2>Cập nhật thông tin chi tiết sản phẩm <span style="color: red;">{{$products->TenSP}}</span></h2>
 
 <form action="{{url('info/' .$info->MaSP)}}" method="post">
   {!! csrf_field() !!}
@@ -59,6 +70,7 @@
     <input type="hidden" id="HuongDanSuDung" name="HuongDanSuDung">
   </div>
   </br>
+  
   <div class="row">
     <div class="col-2">
       <span class="font-weight-bold">Hình ảnh:</span>

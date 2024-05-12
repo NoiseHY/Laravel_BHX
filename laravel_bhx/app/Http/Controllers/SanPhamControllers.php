@@ -153,6 +153,7 @@ class SanPhamControllers extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request);
         $request->validate([
             'TenSP' => 'required',
             'DonGia' => 'required',

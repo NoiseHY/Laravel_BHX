@@ -46,10 +46,10 @@
             </td>
 
             <td>
-              <a href="{{url('/adminpays/' .$pays->MaHD)}}" class="btn btn-primary">Chi tiết</a>
+              <a href="{{url('/adminPay/' .$pays->MaHD)}}" class="btn btn-primary">Chi tiết</a>
             </td>
             <td>
-              <form method="POST" action="{{url('/pays'.'/'.$pays->MaHD)}}">
+              <form method="POST" action="{{url('/pay'.'/'.$pays->MaHD)}}">
                 {{method_field('DELETE')}}
                 {{csrf_field()}}
                 <button onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-danger">Xóa</button>

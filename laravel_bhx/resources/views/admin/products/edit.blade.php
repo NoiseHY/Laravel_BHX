@@ -1,3 +1,5 @@
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.js"></script>
+
 @extends('admin.products.layout')
 @section('content')
 <div class="container">
@@ -10,6 +12,7 @@
     </ul>
   </div>
   @endif
+  
   <h2>Cập nhật sản phẩm <span style="color: red;">{{$products->TenSP}}</span></h2>
   <form action="{{url('products/' .$products->MaSP)}}" method="post">
 
@@ -27,13 +30,14 @@
     <div class="form-group">
       <label for="exampleInputPassword">Số lượng</label>
       <input type="text" class="form-control" id="SoLuong" name="SoLuong" value="{{$products->SoLuong}}">
-    </div>
+    </div></br>
 
-    <div class="form-group">
-      <label for="exampleInputPassword">Mô tả</label>
-      <textarea class="form-control" id="MoTa" style="height: 150px;" name="MoTa">{{$products->MoTa}}</textarea>
+    <label>Mô tả</label>
+    <div class="form-group" id="editor">
+      <div id="quill-editor" style="height: 200px;">{!! $products->MoTa !!}</div>
+      <textarea class="form-control" id="MoTa" name="MoTa" style="display: none;"></textarea>
     </div>
-    <br>
+    </br>
 
     <div class="form-group">
       <label for="exampleInputPassword">Thể loại </label>
@@ -70,6 +74,20 @@
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
     document.getElementById("MaLoai").value = selectedValue;
   }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Quill editor
+    const quill = new Quill('#quill-editor', {
+      theme: 'snow'
+    });
+
+    document.querySelector('form').addEventListener('submit', function() {
+      const quillInput = document.getElementById('MoTa');
+      quillInput.value = quill.root.innerHTML;
+    });
+  });
 </script>
+
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.0/dist/quill.snow.css" rel="stylesheet" />
 
 @endsection

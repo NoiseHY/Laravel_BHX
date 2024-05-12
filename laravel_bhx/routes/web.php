@@ -11,6 +11,7 @@ use App\Http\Controllers\TrangCaNhanControllers;
 use App\Http\Controllers\LoaiSanPhamControllers;
 use App\Http\Controllers\HoaDonControllers_users;
 use App\Http\Controllers\HoaDonControllers;
+use App\Http\Controllers\ThongKeControllers;
 
 
 use App\Http\Controllers\ChiTietSanPhamControllers_Users;
@@ -33,9 +34,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', function () {
-    return view('Admin/home');
-});
+// Route::get('/admin', function () {
+//     return view('Admin/home');
+// });
 
 // Route::get('/home', function () {
 //     return view('/users/home/layout');
@@ -53,7 +54,7 @@ Route::get('/admin', function () {
 //     return view('users.pay.index');
 // });
 
-
+Route::resource('/admin', ThongKeControllers::class);
 
 Route::resource("/users", NguoiDungControllers::class);
 Route::resource("/products", SanPhamControllers::class);
@@ -77,7 +78,7 @@ Route::resource("/details", ChiTietSanPhamControllers_Users::class);
 Route::resource('/info', ChiTietSanPhamControllers::class);
 
 Route::resource('/pay', HoaDonControllers_users::class);
-Route::post('/ok/{id}', [HoaDonControllers::class, 'ok'])->name('ok');
-
 
 Route::resource('/adminPay', HoaDonControllers::class);
+Route::post('/ok/{id}', [HoaDonControllers::class, 'ok'])->name('ok');
+

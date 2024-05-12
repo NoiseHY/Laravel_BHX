@@ -36,6 +36,7 @@
       <input type="number" class="form-control" id="SoLuong" name="SoLuong" placeholder="Số lượng">
     </div></br>
 
+    <label>Mô tả</label>
     <div class="form-group" id="editor">
       <div id="quill-editor" style="height: 200px;"></div>
       <input type="text" id="MoTa" name="MoTa" style="display: none;">
