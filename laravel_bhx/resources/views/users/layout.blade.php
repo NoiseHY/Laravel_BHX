@@ -77,7 +77,9 @@
                             </button>
                             <a href="{{ url('/cart/' . session('user_id')) }}" class="position-relative me-4 my-auto">
                                 <i class="fas fa-shopping-bag fa-lg"></i>
-                                <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">{{$number -1}}</span>
+                                <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" 
+                                style="top: -5px; left: 15px; height: 20px; min-width: 20px;">
+                                {{$number }}</span>
                             </a>
 
                             <div class="dropdown">

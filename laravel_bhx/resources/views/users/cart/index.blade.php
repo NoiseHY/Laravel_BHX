@@ -148,8 +148,8 @@
                             <input class="form-control form-control-sm text-center border-0 quantity-input" id="total-price-input" name="total-price">
                         </div>
 
-                        <button id="saveButton" class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="submit" value="Save">Thanh toán</button>
-
+                        <button id="saveButton" class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" 
+                        type="submit" value="Save"><i class="fas fa-check"></i>  Thanh toán</button>
                 </form>
 
             </div>
@@ -198,7 +198,7 @@
             var quantity = parseInt(row.querySelector('.quantity-input').value);
             var price = parseFloat(row.querySelector('.product-checkbox').getAttribute('data-price'));
             var totalPrice = quantity * price;
-            row.querySelector('#TongTien').textContent = totalPrice ;
+            row.querySelector('#TongTien').textContent = totalPrice;
             updateTotalPrice();
         }
 
@@ -211,7 +211,7 @@
                 var price = parseFloat(checkbox.getAttribute('data-price'));
                 total += quantity * price;
             });
-            document.getElementById('total-price-display').textContent = total ;
+            document.getElementById('total-price-display').textContent = total;
         }
 
     });
@@ -242,7 +242,7 @@
             var quantity = parseInt(row.querySelector('.quantity-input').value);
             var price = parseFloat(row.querySelector('.product-checkbox').getAttribute('data-price'));
             var totalPrice = quantity * price;
-            row.querySelector('#TongTien').textContent = totalPrice ;
+            row.querySelector('#TongTien').textContent = totalPrice;
             updateTotalPrice();
 
             // Cập nhật giá trị của input ẩn "quantities"
@@ -261,7 +261,7 @@
                     total += quantity * price;
                 }
             });
-            document.getElementById('total-price-display').textContent = total ;
+            document.getElementById('total-price-display').textContent = total;
             // Sau khi cập nhật tổng tiền, cập nhật lại giá trị trong trường input ẩn
             document.getElementById('total-price-input').value = total;
         }

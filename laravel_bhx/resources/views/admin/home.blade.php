@@ -92,7 +92,7 @@
 
       <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">
-            <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+            <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
           </svg> Loại sản phẩm</a>
         <ul class="nav-group-items compact">
           <li class="nav-item"><a class="nav-link" href="{{route('categories.index')}}"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Danh sách loại sản phẩm</a></li>
@@ -102,7 +102,7 @@
 
       <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">
-            <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+            <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-credit-card"></use>
           </svg> Hóa đơn</a>
         <ul class="nav-group-items compact">
           <li class="nav-item"><a class="nav-link" href="{{url('/adminPay')}}"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Danh sách hóa đơn</a></li>

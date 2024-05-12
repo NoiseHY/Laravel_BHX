@@ -30,7 +30,11 @@
 
     <div class="product-details d-flex justify-content-between align-items-center">
       <h2>Thông tin chi tiết sản phẩm <span style="color: red;">{{$products->TenSP}}</span></h2>
-      <a href="{{url('/info/'.$products->MaSP)}}" type="button" class="btn btn-warning">Sửa</a>
+      <a href="{{url('/info/'.$products->MaSP)}}" type="button" class="btn btn-warning">
+        <svg class="nav-icon" style="height : 30px; width : 20px">
+          <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-clear-all"></use>
+        </svg>
+        Sửa</a>
     </div>
 
 

@@ -30,7 +30,10 @@
 
     <br>
 
-    <button type="submit" value="Save" class="btn btn-primary">Sửa</button>
+    <button type="submit" value="Save" class="btn btn-primary">
+      <svg class="nav-icon" style="height : 30px; width : 20px">
+        <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-clear-all"></use>
+      </svg> Sửa</button>
   </form>
 </div>
 

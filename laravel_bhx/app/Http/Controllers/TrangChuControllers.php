@@ -24,7 +24,9 @@ class TrangChuControllers extends Controller
 
         $id = session('user_id');
 
-        $number = ChiTietGioHang::count();
+        $card = Giohang::find($id);
+
+        $number = ChiTietGioHang::where('MaGioHang', $card->MaGioHang)->count();
 
         $products = SanPham::paginate(9);
 

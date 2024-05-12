@@ -12,7 +12,7 @@
     </ul>
   </div>
   @endif
-  
+
   <h2>Cập nhật sản phẩm <span style="color: red;">{{$products->TenSP}}</span></h2>
   <form action="{{url('products/' .$products->MaSP)}}" method="post">
 
@@ -64,7 +64,11 @@
 
     <br>
 
-    <button type="submit" value="Save" class="btn btn-primary">Sửa</button>
+    <button type="submit" value="Save" class="btn btn-warning">
+      <svg class="nav-icon" style="height : 30px; width : 20px">
+        <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-clear-all"></use>
+      </svg>
+      Sửa</button>
   </form>
 </div>
 

@@ -39,7 +39,11 @@
       <input class="form-control" type="email" id="Email" name="Email" rows="3" placeholder="Email"></input>
     </div>
     <br>
-    <button type="submit" value="Save" class="btn btn-primary">Submit</button>
+    <button type="submit" value="Save" class="btn btn-primary">
+      <svg class="nav-icon" style="height : 30px; width : 20px">
+        <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-check-alt"></use>
+      </svg>
+      Thêm</button>
   </form>
 </div>
 

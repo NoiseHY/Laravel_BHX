@@ -33,7 +33,8 @@
     </div>
     <br>
 
-    <button type="submit" value="Save" class="btn btn-primary">Sửa</button>
+    <button type="submit" value="Save" 
+    class="btn btn-primary"><i class="far fa-edit" style="color : white"></i> <span style="color:white">Sửa</span> </button>
     </br>
 
   </form>
@@ -65,13 +66,17 @@
             </td>
 
             <td>
-              <a href="{{url('/pay/' .$pay->MaHD)}}" class="btn btn-primary">Chi tiết</a>
+              <a href="{{url('/pay/' .$pay->MaHD)}}" class="btn btn-primary">
+              <i class="fas fa-info" style="color : white"></i> 
+              <span style="color : white">Chi tiết</span> </a>
             </td>
             <td>
               <form method="POST" action="{{url('/pay'.'/'.$pay->MaHD)}}">
                 {{method_field('DELETE')}}
                 {{csrf_field()}}
-                <button onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-warning">Xóa</button>
+                <button onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-warning">
+                <i class="fas fa-ban" style="color : white"></i>
+                <span style="color : white">Xóa</span></button>
 
               </form>
             </td>

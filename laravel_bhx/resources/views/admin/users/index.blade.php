@@ -42,14 +42,26 @@
           </td>
 
           <td>
-            <a href="{{url('/users/' .$user->MaNguoiDung)}}" class="btn btn-primary">Chi tiết</a>
+            <a href="{{url('/users/' .$user->MaNguoiDung)}}" class="btn btn-primary">
+              <svg class="nav-icon" style="height : 30px; width : 20px">
+                <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
+              </svg>
+            </a>
           </td>
-          <td><a href="{{url('/users/' .$user->MaNguoiDung .'/edit')}}" class="btn btn-warning">Sửa</a></td>
+          <td><a href="{{url('/users/' .$user->MaNguoiDung .'/edit')}}" class="btn btn-warning">
+              <svg class="nav-icon" style="height : 30px; width : 20px">
+                <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-clear-all"></use>
+              </svg>
+            </a></td>
           <td>
             <form method="POST" action="{{url('/user'.'/'.$user->MaNguoiDung)}}">
               {{method_field('DELETE')}}
               {{csrf_field()}}
-              <button onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-danger">Xóa</button>
+              <button onclick="return confirm('Bạn có chắc muốn xóa?')" class="btn btn-danger">
+                <svg class="nav-icon" style="height : 30px; width : 20px">
+                  <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-x-circle"></use>
+                </svg>
+              </button>
 
             </form>
           </td>

@@ -37,7 +37,11 @@
       <input type="text" class="form-control" id="Email" name="Email" value="{{$users->Email}}">
     </div>
     <br>
-    <button type="submit" value="Save" class="btn btn-warning">Sửa</button>
+    <button type="submit" value="Save" class="btn btn-warning">
+      <svg class="nav-icon" style="height : 30px; width : 20px">
+        <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-clear-all"></use>
+      </svg>
+      Sửa</button>
   </form>
 </div>
 @endsection

@@ -46,6 +46,6 @@ class HoaDonControllers extends Controller
       'MaNguoiDung' => session('user_id'),
     ]);
 
-    return redirect()->back()->with('message', 'Đã xác nhận thành công !');
+    return redirect('/adminPay')->with('message', 'Đã xác nhận thành công !');
   }
 }

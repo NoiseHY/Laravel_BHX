@@ -90,8 +90,8 @@
             </div>
         </div>
         <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit" name="btnDatHang">Đặt
-            hàng</button>
+        <button class="btn btn-primary btn-lg btn-block" type="submit" name="btnDatHang">
+        <i class="fas fa-check-square" style="color: white;"></i></i> <span style="color: white;">Đặt hàng</span></button>
     </div>
 </div>
 

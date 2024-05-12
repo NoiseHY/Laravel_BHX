@@ -70,7 +70,7 @@
     <input type="hidden" id="HuongDanSuDung" name="HuongDanSuDung">
   </div>
   </br>
-  
+
   <div class="row">
     <div class="col-2">
       <span class="font-weight-bold">Hình ảnh:</span>
@@ -101,7 +101,11 @@
   </div>
   <br>
 
-  <button type="submit" value="Save" class="btn btn-warning">Sửa</button>
+  <button type="submit" value="Save" class="btn btn-warning">
+    <svg class="nav-icon" style="height : 30px; width : 20px">
+      <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-clear-all"></use>
+    </svg>
+    Sửa</button>
 </form>
 </br>
 </div>
