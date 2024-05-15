@@ -9,14 +9,15 @@ use App\Http\Controllers\TrangChuControllers;
 use App\Http\Controllers\LoginControllers;
 use App\Http\Controllers\TrangCaNhanControllers;
 use App\Http\Controllers\LoaiSanPhamControllers;
-use App\Http\Controllers\HoaDonControllers_users;
 use App\Http\Controllers\HoaDonControllers;
 use App\Http\Controllers\ThongKeControllers;
-
+use App\Http\Controllers\GioHangControllers_Admin;
+use App\Http\Controllers\KhachHangControllers_Admin;
 
 use App\Http\Controllers\ChiTietSanPhamControllers_Users;
 use App\Http\Controllers\LoaiSanPhamControllers_users;
-use App\Models\LoaiSanPham;
+use App\Http\Controllers\HoaDonControllers_users;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -81,4 +82,7 @@ Route::resource('/pay', HoaDonControllers_users::class);
 
 Route::resource('/adminPay', HoaDonControllers::class);
 Route::post('/ok/{id}', [HoaDonControllers::class, 'ok'])->name('ok');
+
+Route::resource('/adminCart', GioHangControllers_Admin::class);
+Route::resource('adminCust', KhachHangControllers_Admin::class);
 

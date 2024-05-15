@@ -45,6 +45,7 @@
   <script src="/js/config.js"></script>
   <script src="/js/color-modes.js"></script>
   <link href="/vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -109,6 +110,23 @@
         </ul>
       </li>
 
+      <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+          <svg class="nav-icon">
+            <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-cart"></use>
+          </svg> Giỏ hàng</a>
+        <ul class="nav-group-items compact">
+          <li class="nav-item"><a class="nav-link" href="{{url('/adminCart')}}"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Danh sách hóa đơn</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+          <svg class="nav-icon">
+            <use xlink:href="/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+          </svg> Người dùng</a>
+        <ul class="nav-group-items compact">
+          <li class="nav-item"><a class="nav-link" href="{{url('/adminCust')}}"><span class="nav-icon"><span class="nav-icon-bullet"></span></span> Danh sách hóa đơn</a></li>
+        </ul>
+      </li>
 
       <div class="sidebar-footer border-top d-none d-md-flex">
         <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
@@ -226,7 +244,7 @@
           </li>
         </ul>
       </div>
-     
+
     </header>
 
     <!-- body flex-grow-1 -->
@@ -235,7 +253,7 @@
     </div>
 
     <!-- end body flex-grow-1 -->
-    
+
   </div>
   <!-- CoreUI and necessary plugins-->
   <script src="/vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>

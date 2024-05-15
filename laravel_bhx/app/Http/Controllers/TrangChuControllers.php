@@ -24,17 +24,22 @@ class TrangChuControllers extends Controller
 
         $id = session('user_id');
 
-        $card = Giohang::find($id);
-
-        $number = ChiTietGioHang::where('MaGioHang', $card->MaGioHang)->count();
-
         $products = SanPham::paginate(9);
+        $number = null;
+        $noti = [];
 
-        $noti = ThongBao::where('MaNguoiDung', $id)->whereDate('ThoiGian', $today)
-            ->orderByDesc('ThoiGian') // Sắp xếp theo thời gian giảm dần
-            ->get();
+        if ($id) {
+            $card = Giohang::find($id);
+
+            $number = ChiTietGioHang::where('MaGioHang', $card->MaGioHang)->count();
 
 
+            $noti = ThongBao::where('MaNguoiDung', $id)->whereDate('ThoiGian', $today)
+                ->orderByDesc('ThoiGian') // Sắp xếp theo thời gian giảm dần
+                ->get();
+        }
+
+        
 
         // dd($noti);
 

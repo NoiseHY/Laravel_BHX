@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KhachHang;
 use Illuminate\Http\Request;
 use App\Models\Nguoidung;
 
@@ -57,7 +58,13 @@ class NguoiDungControllers extends Controller
         $input['VaiTro'] = 2;
         $input['TrangThai'] = 1;
 
-        Nguoidung::create($input);
+        $users =  Nguoidung::create($input);
+
+        $info = new KhachHang();
+
+        $info-> MaNguoiDung = $users-> MaNguoiDung;
+
+        $info -> save();
 
         return redirect('/users')->with("message", "Thêm người dùng thành công!");
     }
