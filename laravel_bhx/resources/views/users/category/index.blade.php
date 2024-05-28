@@ -2,6 +2,13 @@
 
 @section('content')
 
+
+@if (\Session::has('message'))
+<div class="alert alert-success">
+  {{ \Session::get('message') }}
+</div>
+@endif
+
 <div class="row">
   <h1>{{$category_name->TenLoai}}</h1>
   <p>{!! $category_name->MoTa!!}</p>
@@ -35,4 +42,18 @@
   @endforeach
 </div>
 
+<div class="col-12">
+  <div class="pagination d-flex justify-content-center mt-5">
+    <!-- Liên kết trang đầu tiên -->
+    <a href="{{ $products->url(1) }}" class="rounded">&laquo;</a>
+
+    <!-- Liên kết đến các trang -->
+    @for ($i = 1; $i <= $products->lastPage(); $i++)
+      <a href="{{ $products->url($i) }}" class="{{ $products->currentPage() == $i ? 'active' : '' }} rounded">{{ $i }}</a>
+      @endfor
+
+      <!-- Liên kết trang cuối cùng -->
+      <a href="{{ $products->url($products->lastPage()) }}" class="rounded">&raquo;</a>
+  </div>
+</div>
 @endsection

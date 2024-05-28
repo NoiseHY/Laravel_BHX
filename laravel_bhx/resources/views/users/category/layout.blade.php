@@ -62,38 +62,53 @@
                 </button>
 
                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
-                    <div class="navbar-nav mx-auto">
-                        <a href="{{url('/home')}}" class="nav-item nav-link">Trang chủ</a>
-                        <a href="{{url('/category')}}" class="nav-item nav-link active">Danh mục</a>
-                        <a href="shop-detail.html" class="nav-item nav-link">Giúp đỡ</a>
 
-                    </div>
+                    <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                        <nav class="navbar-nav mx-auto">
+                            <a href="{{ url('/home') }}" class="nav-item nav-link active">Trang chủ</a>
+                            <a href="{{ url('/category') }}" class="nav-item nav-link">Danh mục</a>
+                            <a href="#" class="nav-item nav-link">Giúp đỡ</a>
+                        </nav>
 
-                    <div class="d-flex align-items-center">
-                        <button class="btn btn-light me-3 rounded-pill" data-bs-toggle="modal" data-bs-target="#searchModal">
-                            <i class="fas fa-search text-primary"></i>
-                        </button>
-                        <a href="{{url('/cart/' .session('user_id'))}}" class="position-relative me-4 my-auto">
-                            <i class="fas fa-shopping-bag fa-lg"></i> <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">{{$number -1}}</span>
-                        </a>
-
-                        <div class="dropdown">
-                            <button class="btn btn-light dropdown-toggle me-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user fa-lg"></i>
+                        <div class="d-flex align-items-center">
+                            @if(session('user_id'))
+                            <button class="btn btn-light me-3 rounded-pill" data-bs-toggle="modal" data-bs-target="#searchModal">
+                                <i class="fas fa-search text-primary"></i>
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                                <li><a href="{{ url('/profile/' . session('user_id')) }}" class="dropdown-item">Trang cá nhân</a></li>
-                                <li><a href="#" class="dropdown-item">Cài đặt</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a href="#" class="dropdown-item">Thoát</a></li>
-                            </ul>
+                            <a href="{{ url('/cart/' . session('user_id')) }}" class="position-relative me-4 my-auto">
+                                <i class="fas fa-shopping-bag fa-lg"></i>
+                                <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" 
+                                style="top: -5px; left: 15px; height: 20px; min-width: 20px;">
+                                {{$number }}</span>
+                            </a>
+
+                            
+
+                            <div class=" d-flex align-items-center">
+                                <div class="dropdown">
+                                    <a href="#" class="dropdown-toggle d-flex align-items-center text-dark" data-bs-toggle="dropdown">
+                                        <i class="fas fa-user fa-lg"></i> </a>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a href="{{ url('profile') }}" class="dropdown-item">Tài khoản</a></li>
+                                        <li><a href="{{ url('/customer/' . session('user_id')) }}" class="dropdown-item">Người dùng</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item">Thoát</button>
+                                        </form>
+                                    </ul>
+                                </div>
+                            </div>
+                            @else
+                            <a href="{{ url('/login') }}" class="dropdown-item">Đăng nhập</a>
+                            @endif
+
                         </div>
                     </div>
-
-
                 </div>
+
             </nav>
         </div>
     </div>

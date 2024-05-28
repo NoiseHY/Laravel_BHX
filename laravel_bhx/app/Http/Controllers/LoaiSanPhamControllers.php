@@ -79,4 +79,8 @@ class LoaiSanPhamControllers extends Controller
 
     return redirect()->back()->with("message", "Thêm thành công!");
   }
+  public function destroy($id){
+    LoaiSanPham::find($id) -> delete();
+    return redirect()->back()->with("message", "Xóa thành công !");
+  }
 }

@@ -26,6 +26,8 @@
 <ul class="list-group">
   @foreach($details as $details)
   <li class="list-group-item">Mã sản phẩm : {{$details->MaSP}}</li>
+  <li class="list-group-item">Tên sản phẩm : {{$details->TenSP}}</li>
+
   <li class="list-group-item">Số lượng : {{$details->SoLuong}}</li>
   <li class="list-group-item">Đơn giá : {{$details->DonGia}}</li>
   <li class="list-group-item">Thành tiền : {{$details->ThanhTien}}</li>

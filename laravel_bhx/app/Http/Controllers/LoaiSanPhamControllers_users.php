@@ -8,6 +8,7 @@ use App\Models\LoaiSanPham;
 use App\Models\ChiTietGioHang;
 use App\Models\ChiTietSanPham;
 use App\Models\SanPham;
+use App\Models\Giohang;
 
 class LoaiSanPhamControllers_users extends Controller
 {
@@ -19,7 +20,9 @@ class LoaiSanPhamControllers_users extends Controller
     public function index()
     {
         //
-        $number = ChiTietGioHang::count();
+        $card = Giohang::find(session('user_id'));
+
+        $number = ChiTietGioHang::where('MaGioHang', $card->MaGioHang)->count();
 
         $category = LoaiSanPham::all();
 
@@ -27,7 +30,7 @@ class LoaiSanPhamControllers_users extends Controller
 
         $category_name = LoaiSanPham::find($category_id);
 
-        $products = SanPham::where('MaLoai', $category_id)->get();
+        $products = SanPham::where('MaLoai', $category_id)->paginate(9);
 
         return view('users.category.index', [
             'number' => $number, 'category' => $category,
@@ -36,7 +39,7 @@ class LoaiSanPhamControllers_users extends Controller
         ]);
     }
 
-    
+
 
 
     /**
@@ -68,13 +71,15 @@ class LoaiSanPhamControllers_users extends Controller
      */
     public function show($id)
     {
-        $number = ChiTietGioHang::count();
+        $card = Giohang::find($id);
+
+        $number = ChiTietGioHang::where('MaGioHang', $card->MaGioHang)->count();
 
         $category_name = LoaiSanPham::find($id);
 
         $category = LoaiSanPham::all();
 
-        $products = SanPham::where('MaLoai', $id)->get();
+        $products = SanPham::where('MaLoai', $id)->paginate(9);
 
         return view('users.category.index', [
             'products' => $products, 'category_name' => $category_name,

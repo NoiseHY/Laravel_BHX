@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\HoaDon;
 use App\Models\ChiTietHoaDon;
 use App\Models\ThongBao;
+use App\Models\SanPham;
 
 class HoaDonControllers extends Controller
 {
@@ -24,6 +25,10 @@ class HoaDonControllers extends Controller
     $details = ChiTietHoaDon::where('MaHD', $id)->get();
 
     // dd($details);
+
+    $products = SanPham::where('MaSP', $details-> MaSP)->first();
+
+    dd($products);
 
 
     return view('admin.pay.info', ['details' => $details, 'pay' => $pay]);
